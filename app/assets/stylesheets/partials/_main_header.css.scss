@@ -1,0 +1,95 @@
+$header_height: 100px;
+.header {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: $header_height;
+	background-color: $light_blue;
+	.header_container {
+		position: relative;
+		width: 950px;
+		height: $header_height;
+		margin: auto;
+		overflow: visible;
+		.logo {
+			position: absolute;
+			top: 10px;
+			left: 0px;
+			width: 387px;
+			height: 85px;
+			background-image: url('/assets/logo.png');
+		}
+		.nav {
+			position: absolute;
+			top: 20px;
+			right: 21px;
+			height: 50px;
+			width: 500px;
+			font-size: 14px;
+			color: #FFFFFF;
+			background: url('/assets/main_nav.png') no-repeat left top;
+			ul {
+				list-style: none;
+				li {
+					&.active {
+						background: url('/assets/nv-hover.png') no-repeat right top;
+						color: #000000;
+						z-index: 5;
+					}
+					&:hover {
+						background: url('/assets/nv-hover.png') no-repeat right top;
+						color: #000000;
+						z-index: 5;
+						ul {
+							display: block;
+							position: absolute;
+							background: #f38d0d;
+							left: -70px;
+							width: 200px;
+							top: 48px;
+							z-index: 5;
+							padding: 10px;
+							@include border-radius(12px,12px);
+							li {
+								background: none !important;
+								padding: 0px 15px;
+								text-align: left;
+								float: left;
+								width: 127px;
+								border-bottom: 1px solid #ffb455;
+								z-index: 5;
+							}
+						}
+					}
+					float: left;
+					margin: 0px 0px 0px 0px;
+					padding: 12px 11px 18px 15px;
+					text-align: center;
+					position: relative;
+					background: url('/assets/sep.png') no-repeat right top;
+					a {
+						padding: 9px 0px;
+						color: white;
+						text-decoration: none;
+						span.arrow {
+							padding: 0px 15px 0px 0px;
+							background: url('/assets/arrow-white.png') no-repeat right top;
+						}
+					}
+					ul {
+						display: none;
+					}
+				}
+			}
+		}
+		.nav_right {
+			position: absolute;
+			top: 20px;
+			right: 0px;
+			background: url('/assets/main_nav.png') no-repeat right top;
+			height: 50px;
+			width: 21px;
+		}
+	}
+}

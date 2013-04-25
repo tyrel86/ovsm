@@ -1,0 +1,21 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: ovsm_development
+  pool: 5
+  username: tyrel
+  password: SQL_BuddhA024878
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: ovsm_test
+  pool: 5
+  username: tyrel
+  password: SQL_BuddhA024878
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: ovsm_production
+  pool: 5
+  username: ovsm
+  password:

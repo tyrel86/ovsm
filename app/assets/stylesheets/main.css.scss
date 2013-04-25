@@ -1,0 +1,70 @@
+@import "blue_print_import";
+@import "partials/variables";
+@import "partials/main_header";
+
+body {
+	background-color: white;
+}
+
+.container {
+	@include container;
+	margin-top: 100px;
+}
+
+
+.full_width_container {
+	width: 100%;
+	position: absolute;
+	top: 100px;
+	left: 0px;
+	z-index: -1;
+	&#feeds_index {
+		#map {
+			height: 550px;
+		}
+		#feed_search {
+			background-image: url('/assets/feed_search.png');
+			position: absolute;
+			top: 10px;
+			right: 27px;
+			height: 95px;
+			width: 356px;
+			#feed_name {
+				position: absolute;
+				top: 22px;
+				left: 21px;
+				height: 31px;
+				width: 239px;
+			}
+		}
+	}
+}
+
+.leaflet-control-attribution.leaflet-control {
+	display: none;
+}
+
+#feeds_show {
+	.feed_banner {
+		width: 634px;
+		height: 300px;
+		float: left;
+	}
+	.weather_widget {
+		width: 316px;
+		height: 300px;
+		background-color: $dark_grey;
+		float: right;
+		.left_col {
+			width: 211px;
+			height: 100%;
+			float: left;
+		}
+		.right_col {
+			width: 105px;
+			height: 100%;
+			float: left;
+			background-color: $mid_grey;
+		}
+	}
+}

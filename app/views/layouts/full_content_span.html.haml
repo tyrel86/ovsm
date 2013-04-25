@@ -1,0 +1,16 @@
+!!! 5
+%html
+	%head
+		%title OverSeaMe
+		= stylesheet_link_tag    "application", :media => "all"
+		= stylesheet_link_tag    "leaflet", :media => "all"
+		/[if IE]
+			= stylesheet_link_tag    "leaflet_ie", :media => "all"
+		= javascript_include_tag "application"
+		= javascript_include_tag "leaflet"
+		= javascript_include_tag "ovsm_leaflet"
+		= csrf_meta_tags
+	%body
+		= render "shared/header"
+		.full_width_container{ class: params[:controller], id: "#{params[:controller]}_#{params[:action]}" }
+			= yield

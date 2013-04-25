@@ -1,0 +1,4 @@
+#map
+#feed_search
+	= simple_form_for Feed.new do |f|
+		= f.input :name, label: false, autocomplete: "/feeds.json"

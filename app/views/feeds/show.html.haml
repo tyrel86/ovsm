@@ -1,0 +1,6 @@
+.span-24
+	= image_tag @feed.feed_banners.where( active: true ).first.image, class: "feed_banner"
+	.weather_widget
+		.left_col
+		.right_col
+%weather_api_id{ data: {id: @feed.id_for_weather_api}}
