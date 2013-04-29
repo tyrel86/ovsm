@@ -6,6 +6,7 @@ $header_height: 100px;
 	width: 100%;
 	height: $header_height;
 	background-color: $light_blue;
+	z-index: 1;
 	.header_container {
 		position: relative;
 		width: 950px;

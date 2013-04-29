@@ -1,9 +1,11 @@
 @import "blue_print_import";
 @import "partials/variables";
+@import "partials/fonts";
 @import "partials/main_header";
 
 body {
 	background-color: white;
+	font-family: 'abeatbyKai'
 }
 
 .container {
@@ -45,10 +47,21 @@ body {
 }
 
 #feeds_show {
-	.feed_banner {
-		width: 634px;
-		height: 300px;
-		float: left;
+	.banner {
+		position:relative;
+		.feed_banner {
+			width: 634px;
+			height: 300px;
+			float: left;
+		}
+		.name {
+			position: absolute;
+			top: 7px;
+			left: 7px;
+			font-family: "Bullpen";
+			font-size: 42px;
+			color: white;
+		}
 	}
 	.weather_widget {
 		width: 316px;
@@ -56,15 +69,97 @@ body {
 		background-color: $dark_grey;
 		float: right;
 		.left_col {
-			width: 211px;
+			width: 170px;
 			height: 100%;
 			float: left;
+			color: white;
+			.section {
+				border-bottom: 2px solid $mid_grey;
+				position: relative;
+				&.tall {
+					height: 108px;
+				}
+				&.push_down {
+					height: 57px;
+					padding-top: 15px;
+				}
+				.name {
+					position: absolute;
+					top: 5px;
+					left: 7px;
+				}
+				.icon {
+					position: absolute;
+					top: 25px;
+					left: 7px;
+				}
+				.high {
+					position: absolute;
+					top: 0px;
+					left: 60px;
+					font-size: 52px;
+				}
+				.low {
+					position: absolute;
+					top: 50px;
+					left: 124px;
+					font-size: 19px;
+					color: #69889A;
+				}
+				.time {
+					position: absolute;
+					top: 82px;
+					left: 7px;
+				}
+				.users {
+					padding: 5px;
+					font-size: 24px;
+				}
+				.video {
+					float: left;
+					img {
+						width: 42px;
+					}
+				}
+				.video_button {
+					float: left;
+					background-color: #0191CF;
+					width: 100px;
+					@include border-radius(4px, 4px);
+					color: white;
+					font-size: 12px;
+					padding: 3px;	
+					font-weight: bold;
+					position: relative;
+					top: 5px;
+					left: 5px;
+				}
+			}
 		}
 		.right_col {
-			width: 105px;
+			width: 146px;
 			height: 100%;
 			float: left;
 			background-color: $mid_grey;
+			height: 252px;
+			table {
+				tr {
+					height: 42px;
+					.day_name {
+						color: #6D6C6A;
+					}
+					.high {
+						color: white;
+					}
+					.low {
+						color: #69889A;
+					}
+					.temp {
+						font-size: 14px;
+						font-weight: bolder;
+					}
+				}
+			}
 		}
 	}
 }

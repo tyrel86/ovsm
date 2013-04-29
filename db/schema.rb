@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424215944) do
+ActiveRecord::Schema.define(:version => 20130425203711) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -58,10 +58,45 @@ ActiveRecord::Schema.define(:version => 20130424215944) do
     t.string   "name"
     t.float    "lat"
     t.float    "lng"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "slug"
-    t.integer  "id_for_weather_api"
+    t.integer  "forecast_id"
+  end
+
+  create_table "forecasts", :force => true do |t|
+    t.datetime "day_1_time"
+    t.integer  "day_1_low"
+    t.integer  "day_1_high"
+    t.string   "day_1_icon"
+    t.datetime "day_2_time"
+    t.integer  "day_2_low"
+    t.integer  "day_2_high"
+    t.string   "day_2_icon"
+    t.datetime "day_3_time"
+    t.integer  "day_3_low"
+    t.integer  "day_3_high"
+    t.string   "day_3_icon"
+    t.datetime "day_4_time"
+    t.integer  "day_4_low"
+    t.integer  "day_4_high"
+    t.string   "day_4_icon"
+    t.datetime "day_5_time"
+    t.integer  "day_5_low"
+    t.integer  "day_5_high"
+    t.string   "day_5_icon"
+    t.datetime "day_6_time"
+    t.integer  "day_6_low"
+    t.integer  "day_6_high"
+    t.string   "day_6_icon"
+    t.datetime "day_7_time"
+    t.integer  "day_7_low"
+    t.integer  "day_7_high"
+    t.string   "day_7_icon"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "feed_id"
+    t.integer  "forecast_io"
   end
 
 end

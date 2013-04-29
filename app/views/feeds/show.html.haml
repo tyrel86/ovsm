@@ -1,6 +1,36 @@
 .span-24
-	= image_tag @feed.feed_banners.where( active: true ).first.image, class: "feed_banner"
+	.banner
+		= image_tag @feed.feed_banners.where( active: true ).first.image, class: "feed_banner"
+		.name= @feed.name
 	.weather_widget
 		.left_col
+			.section.tall
+				- today = @forecast.today
+				.name= today[:name]
+				-# .icon= image_tag today[:icon]
+				.icon= image_tag "http://placekitten.com/50/50"
+				.high= "#{today[:high]}&deg;".html_safe
+				.low= "#{today[:low]}&deg;".html_safe
+				.time Current Time: 12:00AM
+			.section
+				.users= "Users: 30,000"
+			.section.push_down
+				.video= image_tag "video.png"
+				= link_to "#" do
+					.video_button= "Watch City Clip >"
+			
 		.right_col
-%weather_api_id{ data: {id: @feed.id_for_weather_api}}
+			%table
+				- @forecast.each_day do |day_name,values|
+					%tr
+						%td.day_name
+							= day_name.upcase[0..2]
+						-# %td
+							-# = image_tag( "#{values["icon"]}.jpg" )
+						%td
+							= image_tag( "http://placekitten.com/25/25" )
+						%td.high.temp
+							= "#{values["high"]}&deg;".html_safe
+						%td.low.temp
+							= "#{values["low"]}&deg;".html_safe
+

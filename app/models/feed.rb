@@ -1,7 +1,13 @@
 class Feed < ActiveRecord::Base
-  attr_accessible :lat, :lng, :name, :id_for_weather_api, :slug
+  attr_accessible :lat, :lng, :name, :slug
 	has_many :feed_banners
 	before_save :update_slug
+	before_create :initilize_dependancies
+	has_one :forecast
+
+	def initilize_dependancies
+		self.build_forecast
+	end
 
 	def to_param
 		slug
