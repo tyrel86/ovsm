@@ -14,4 +14,4 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require misc
-//= require weather_widget
+//= require feeds

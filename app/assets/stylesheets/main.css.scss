@@ -38,6 +38,19 @@ body {
 				height: 31px;
 				width: 239px;
 			}
+			.invisible-plane {
+				position: absolute;
+				top: 15px;
+				left: 270px;
+				width: 86px;
+				height: 68px;
+				background: transparent;
+				border: none;
+				&:hover {
+					cursor: hand;
+					cursor: pointer;
+				}
+			}
 		}
 	}
 }

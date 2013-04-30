@@ -1,4 +1,5 @@
 #map
 #feed_search
-	= simple_form_for Feed.new do |f|
+	= simple_form_for Feed.new, url: fly_and_show_path do |f|
 		= f.input :name, label: false, autocomplete: "/feeds.json"
+		= f.submit "", class: "invisible-plane"
