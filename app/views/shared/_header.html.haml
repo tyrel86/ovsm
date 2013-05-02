@@ -5,7 +5,7 @@
 			%ul
 				%li{ class: "link" }
 					= active_link_to "#" do
-						= image_tag "home.png"
+						= image_tag "home.png", class: :home
 				%li= link_to "My Profile", "#"
 				%li= active_link_to "Zones", feeds_path
 				%li

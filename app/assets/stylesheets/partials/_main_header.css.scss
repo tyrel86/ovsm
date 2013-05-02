@@ -33,6 +33,12 @@ $header_height: 100px;
 			ul {
 				list-style: none;
 				li {
+					float: left;
+					margin: 0px 0px 0px 0px;
+					padding: 12px 14px 18px 12px;
+					text-align: center;
+					position: relative;
+					background: url('/assets/sep.png') no-repeat right top;
 					&.active {
 						background: url('/assets/nv-hover.png') no-repeat right top;
 						color: #000000;
@@ -45,7 +51,7 @@ $header_height: 100px;
 						ul {
 							display: block;
 							position: absolute;
-							background: #f38d0d;
+							background: white;
 							left: -70px;
 							width: 200px;
 							top: 48px;
@@ -63,12 +69,9 @@ $header_height: 100px;
 							}
 						}
 					}
-					float: left;
-					margin: 0px 0px 0px 0px;
-					padding: 12px 11px 18px 15px;
-					text-align: center;
-					position: relative;
-					background: url('/assets/sep.png') no-repeat right top;
+					&.link:hover {
+						background: url('/assets/sep.png') no-repeat right top;
+					}
 					a {
 						padding: 9px 0px;
 						color: white;
@@ -76,6 +79,10 @@ $header_height: 100px;
 						span.arrow {
 							padding: 0px 15px 0px 0px;
 							background: url('/assets/arrow-white.png') no-repeat right top;
+						}
+						img.home {
+							position: relative;
+							left: -8px;
 						}
 					}
 					ul {

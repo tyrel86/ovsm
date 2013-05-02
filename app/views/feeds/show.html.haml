@@ -1,7 +1,7 @@
 .span-24
 	.banner
 		= image_tag @feed.feed_banners.where( active: true ).first.image, class: "feed_banner"
-		.name= @feed.name
+		%h1.name.bullpen= @feed.name
 	.weather_widget
 		.left_col
 			.section.tall

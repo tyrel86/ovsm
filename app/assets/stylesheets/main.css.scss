@@ -8,11 +8,105 @@ body {
 	font-family: 'abeatbyKai'
 }
 
+.bullpen {
+	font-family: "Bullpen";
+	color: white;
+}
+
 .container {
 	@include container;
 	margin-top: 100px;
 }
 
+.world_background {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-image: url('/assets/earth.jpg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.full_width_world_background_container {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	.bullpen {
+		position: absolute;
+		top: 35%;
+		left: 3%;
+		width: 45%;
+		font-size: 70px;
+	}
+	.logo {
+		position: absolute;
+		top: 1%;
+		left: 37%;
+	}
+	.facebook {
+		width: 280px;
+		height: 46px;
+		position: absolute;
+		top: 42%;
+		left: 58%;
+		background-image: url('/assets/facebook.png');
+		&:hover {
+			background-image: url('/assets/facebook-hover.png');
+		}
+	}
+	.sign_up {
+		position: absolute;
+		top: 27%;
+		left: 58%;
+		.sign_up_button {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			&:hover {
+				cursor: hand;
+				cursor: pointer;
+			}
+		}
+		.sign_up_form {
+			width: 280px;
+			height: 370px;
+			background-color: #D7D7D7;
+			position: absolute;
+			top: 60px;
+			display: none;
+			td {
+				padding: 0px 10px 0px 5px
+			}
+			input {
+				width: 178px;
+			}
+			input.submit_form {
+				margin: auto;
+				width: 80%;
+			}
+			#user_birthday_2i {
+				width: 74px;
+			}
+			.terms {
+				width: 90%;
+				height: 10px;
+				margin: auto;
+				#terms {
+					width: 20px;
+					float: left;
+				}
+				p {
+					float: right;
+					margin: 0px;
+				}
+			}
+		}
+	}
+}
 
 .full_width_container {
 	width: 100%;
@@ -71,7 +165,6 @@ body {
 			position: absolute;
 			top: 7px;
 			left: 7px;
-			font-family: "Bullpen";
 			font-size: 42px;
 			color: white;
 		}

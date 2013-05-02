@@ -1,0 +1,51 @@
+!!! 5
+%html
+	%head
+		%title OverSeaMe
+		= stylesheet_link_tag    "application", :media => "all"
+		= stylesheet_link_tag    "leaflet", :media => "all"
+		/[if IE]
+			= stylesheet_link_tag    "leaflet_ie", :media => "all"
+		= javascript_include_tag "application"
+		= javascript_include_tag "leaflet"
+		= javascript_include_tag "ovsm_leaflet"
+		= csrf_meta_tags
+	%body
+		.world_background
+		.full_width_world_background_container{ class: params[:controller], id: "#{params[:controller]}_#{params[:action]}" }
+			.logo= image_tag "logo.png"
+			%h1.bullpen Everywhere Anytime Around the World You See
+			= link_to user_omniauth_authorize_path(:facebook) do
+				.facebook
+			.sign_up
+				= image_tag "sign-up.jpg", class: :sign_up_button
+				.sign_up_form
+					= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+						= f.error_notification
+						%table
+							%tr
+								%td Name
+								%td= f.input_field :name, :required => true, :autofocus => true, label: false
+							%tr
+								%td Username
+								%td= f.input_field :username, :required => true, :autofocus => true, label: false
+							%tr
+								%td Email
+								%td= f.input_field :email, :required => true, :autofocus => true, label: false
+							%tr
+								%td Password
+								%td= f.input_field :password, :required => true, label: false
+							%tr
+								%td Password Confirmation
+								%td= f.input_field :password_confirmation, :required => true, label: false
+							%tr
+								%td Interest
+								%td= f.association :interest, :required => true, :autofocus => true, label: false
+							%tr
+								%td Birthday
+								%td= f.input_field :birthday, :required => true, :autofocus => true, label: false
+						.terms
+							= check_box_tag :terms
+							%p I accept the terms and conditions stated here
+						%br
+						= image_submit_tag "sign_up_complete.png", class: :submit_form
