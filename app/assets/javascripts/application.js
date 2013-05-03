@@ -15,3 +15,5 @@
 //= require jquery.ui.all
 //= require misc
 //= require feeds
+//= require jqClock.min
+//= require digital_clock

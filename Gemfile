@@ -35,6 +35,9 @@ gem "rmagick"
 gem 'carrierwave'
 gem "fog"
 
+#Language time and location libraries
+gem 'timezone'
+
 #User authintication not devise is required by active admin
 gem 'omniauth'
 gem 'omniauth-facebook', require: "omniauth-facebook"

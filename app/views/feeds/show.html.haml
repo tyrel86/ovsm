@@ -11,7 +11,7 @@
 				.icon= image_tag "http://placekitten.com/50/50"
 				.high= "#{today[:high]}&deg;".html_safe
 				.low= "#{today[:low]}&deg;".html_safe
-				.time Current Time: 12:00AM
+				.digital_clock
 			.section
 				.users= "Users: 30,000"
 			.section.push_down
@@ -34,3 +34,4 @@
 						%td.low.temp
 							= "#{values["low"]}&deg;".html_safe
 .span-24 Post posts and more post
+%time_data{ data: { time: @feed.current_time_stamp }}
