@@ -32,6 +32,6 @@ class Feed < ActiveRecord::Base
 	end
 
 	def current_time_stamp
-		current_time.to_i
+		Time.strptime(current_time.strftime("%I:%M:%S"),"%I:%M:%S").to_i
 	end
 end

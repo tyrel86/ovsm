@@ -212,6 +212,11 @@ body {
 					font-size: 19px;
 					color: #69889A;
 				}
+				.icon {
+					img {
+						width: 50px;
+					}
+				}
 				.digital_clock {
 					position: absolute;
 					top: 82px;
@@ -253,6 +258,11 @@ body {
 					height: 42px;
 					.day_name {
 						color: #6D6C6A;
+					}
+					.icon {
+						img {
+							width: 25px;
+						}
 					}
 					.high {
 						color: white;

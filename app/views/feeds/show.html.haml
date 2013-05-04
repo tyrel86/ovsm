@@ -8,7 +8,7 @@
 				- today = @forecast.today
 				.name= today[:name]
 				-# .icon= image_tag today[:icon]
-				.icon= image_tag "http://placekitten.com/50/50"
+				.icon= icon_to_image( today[:icon], "blue" )
 				.high= "#{today[:high]}&deg;".html_safe
 				.low= "#{today[:low]}&deg;".html_safe
 				.digital_clock
@@ -27,11 +27,11 @@
 							= day_name.upcase[0..2]
 						-# %td
 							-# = image_tag( "#{values["icon"]}.jpg" )
-						%td
-							= image_tag( "http://placekitten.com/25/25" )
+						%td.icon
+							= icon_to_image values["icon"]
 						%td.high.temp
 							= "#{values["high"]}&deg;".html_safe
 						%td.low.temp
 							= "#{values["low"]}&deg;".html_safe
 .span-24 Post posts and more post
-%time_data{ data: { time: @feed.current_time_stamp }}
+%time_data{ data: { time: @feed.current_time_stamp * 1000 }}

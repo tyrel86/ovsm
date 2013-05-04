@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
 	mount_uploader :avatar, AvatarUploader
 	belongs_to :interest
+	has_and_belongs_to_many :posts
 
 	class << self
 		def find_first_by_auth_conditions(warden_conditions)
