@@ -11,7 +11,11 @@ class LandscapePhotoUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process :resize_to_fill => [75,75]
+    process :resize_to_fill => [377,186]
+  end
+
+  version :large do
+    process :resize_to_fill => [754,372]
   end
 
 end
