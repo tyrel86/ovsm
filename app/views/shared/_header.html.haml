@@ -6,21 +6,9 @@
 				%li{ class: "link" }
 					= active_link_to "#" do
 						= image_tag "home.png", class: :home
-				%li= link_to "My Profile", "#"
+				%li= active_link_to "My Profile", "#"
 				%li= active_link_to "Zones", feeds_path
-				%li
-					= active_link_to "#" do
-						%span.arrow Travel
-						%ul
-							%li= link_to "Housing", "#"
-							%li= link_to "Flights", "#"
-							%li= link_to "Language", "#"
-							%li= link_to "Jobs", "#"
+				%li= active_link_to "Travel", "#"
 				%li= active_link_to "Connect", "#"
-				%li
-					= active_link_to "#" do
-						%span.arrow Account
-						%ul
-							%li= link_to "Settings", "#"
-							%li= link_to "Privacy", "#"
+				%li= active_link_to "Account", "#"
 		.nav_right

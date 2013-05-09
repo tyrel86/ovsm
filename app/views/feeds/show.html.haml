@@ -15,9 +15,10 @@
 			.section
 				.users= "Users: 30,000"
 			.section.push_down
-				.video= image_tag "video.png"
 				= link_to "#" do
-					.video_button= "Watch City Clip >"
+					.video_button
+						.video= image_tag "video.png"
+						.video_text Watch City Clip
 			
 		.right_col
 			%table
@@ -33,5 +34,7 @@
 							= "#{values["high"]}&deg;".html_safe
 						%td.low.temp
 							= "#{values["low"]}&deg;".html_safe
+		= link_to_modal new_post_path do
+			.new_post <span>Make a Post</span>
 .span-24 Post posts and more post
 %time_data{ data: { time: @feed.current_time_stamp * 1000 }}

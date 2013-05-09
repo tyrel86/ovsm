@@ -3,13 +3,13 @@ Ovsm::Application.routes.draw do
 	devise_scope :user do
 		root to: "devise/registrations#new"
 	end
-
-	get "/feeds" => "feeds#index", as: :user_root
-  devise_for :users
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+	get "/feeds" => "feeds#index", as: :user_root
 	post "/feeds/fly_and_show" => "feeds#fly_and_show", as: :fly_and_show
   resources :feeds
+
+	resources :posts
+	resources :square_photos
 end

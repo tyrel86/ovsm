@@ -2,6 +2,7 @@
 @import "partials/variables";
 @import "partials/fonts";
 @import "partials/main_header";
+@import "tabular_form";
 
 body {
 	background-color: white;
@@ -174,6 +175,7 @@ body {
 		height: 300px;
 		background-color: $dark_grey;
 		float: right;
+		position: relative;
 		.left_col {
 			width: 170px;
 			height: 100%;
@@ -224,7 +226,7 @@ body {
 				}
 				.users {
 					padding: 5px;
-					font-size: 24px;
+					font-size: 16px;
 				}
 				.video {
 					float: left;
@@ -242,8 +244,15 @@ body {
 					padding: 3px;	
 					font-weight: bold;
 					position: relative;
-					top: 5px;
+					top: -2px;
 					left: 5px;
+					width: 150px;
+					.video_text {
+						position: relative;
+						top: 9px;
+						left: 2px;
+						font-size: 13px;
+					}
 				}
 			}
 		}
@@ -274,7 +283,34 @@ body {
 						font-size: 14px;
 						font-weight: bolder;
 					}
+					td {
+						padding: 4px;
+					}
 				}
+			}
+		}
+		.new_post {
+			width: 100%;
+			position: absolute;
+			top: 260px;
+			height: 33px;
+			width: 133px;
+			left: 92px;
+			text-align: center;
+			padding-top: 0px;
+			font-size: 14px;
+			color: white;
+			background-color: #0191CF;
+			@include border-radius(4px, 4px);
+			font-weight: bold;
+			span {
+				position: relative;
+				top: 7px;
+			}
+			a {
+				color: white;
+				font-size: 14px;
+				text-decoration: none;
 			}
 		}
 	}

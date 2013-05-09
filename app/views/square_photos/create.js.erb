@@ -1,0 +1,4 @@
+<% if @square_photo.new_record? %>
+  alert("Failed to upload photo: <%= j @square_photos.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+<% end %>

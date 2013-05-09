@@ -13,7 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require jquery.modal
 //= require misc
 //= require feeds
 //= require jqClock.min
 //= require digital_clock
+//= require geoip2
+//= require user_location
+//= require tab_form
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl

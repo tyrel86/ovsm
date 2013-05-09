@@ -1,0 +1,10 @@
+.modal_form
+	= simple_form_for SquarePhoto.new do |f|
+		= f.input :photo, label: false
+		= f.input :caption, label: "Add a caption"
+		#upload_photo.init_upload Upload Photo
+
+	%br
+	%hr#photo_upload_progress_devider.progress_devider
+	#photo_upload_progress_container
+	= render partial: "shared/progress_bars", locals: {handle: :photo}

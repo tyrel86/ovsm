@@ -14,6 +14,10 @@ class LandscapePhotoUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [377,186]
   end
 
+	def extension_white_list
+    %w(jpg jpeg gif png)
+  end
+
   version :large do
     process :resize_to_fill => [754,372]
   end

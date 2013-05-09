@@ -35,10 +35,13 @@ $header_height: 100px;
 				li {
 					float: left;
 					margin: 0px 0px 0px 0px;
-					padding: 12px 14px 18px 12px;
+					padding: 15px 9px 18px 9px;
 					text-align: center;
 					position: relative;
 					background: url('/assets/sep.png') no-repeat right top;
+					&.link {
+						padding: 13px 9px 18px 9px;
+					}
 					&.active {
 						background: url('/assets/nv-hover.png') no-repeat right top;
 						color: #000000;

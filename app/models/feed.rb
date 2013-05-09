@@ -4,6 +4,7 @@ class Feed < ActiveRecord::Base
 	before_save :update_slug
 	before_create :initilize_dependancies, :update_time_Zone
 	has_one :forecast
+	has_many :posts
 
 	def initilize_dependancies
 		self.build_forecast

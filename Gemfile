@@ -49,8 +49,10 @@ gem 'active_link_to'
 #Cient scripting libraries
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'jquery-modal-rails'
 gem 'jbuilder'
 gem 'active_model_serializers'
+gem "jquery-fileupload-rails", git: "https://github.com/cannapages/jquery-fileupload-rails.git"
 
 #Deployment
 gem 'unicorn'
