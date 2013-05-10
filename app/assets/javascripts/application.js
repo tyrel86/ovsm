@@ -10,11 +10,13 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//= require_self
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.modal
 //= require misc
+//= require object_watch
 //= require feeds
 //= require jqClock.min
 //= require digital_clock
@@ -23,3 +25,5 @@
 //= require tab_form
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
+
+var OvsmLib = {}

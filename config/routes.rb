@@ -1,4 +1,9 @@
 Ovsm::Application.routes.draw do
+  resources :page_links
+
+
+  use_link_thumbnailer
+
 	devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 	devise_scope :user do
 		root to: "devise/registrations#new"
@@ -12,4 +17,6 @@ Ovsm::Application.routes.draw do
 
 	resources :posts
 	resources :square_photos
+	resources :audio_files
+	resources :video_files
 end

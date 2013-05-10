@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130508210742) do
+ActiveRecord::Schema.define(:version => 20130509213501) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -50,12 +50,15 @@ ActiveRecord::Schema.define(:version => 20130508210742) do
     t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "post_id"
   end
 
   create_table "audio_files", :force => true do |t|
-    t.string   "caption"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "file"
+    t.integer  "audio_album_id"
   end
 
   create_table "feed_banners", :force => true do |t|
@@ -124,10 +127,21 @@ ActiveRecord::Schema.define(:version => 20130508210742) do
     t.string   "photo"
   end
 
+  create_table "page_links", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "image_url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "url"
+    t.integer  "post_id"
+  end
+
   create_table "photo_albums", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "title"
+    t.integer  "post_id"
   end
 
   create_table "portrait_photos", :force => true do |t|
@@ -145,9 +159,10 @@ ActiveRecord::Schema.define(:version => 20130508210742) do
 
   create_table "square_photos", :force => true do |t|
     t.string   "caption"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "photo"
+    t.integer  "photo_album_id"
   end
 
   create_table "users", :force => true do |t|
@@ -179,12 +194,15 @@ ActiveRecord::Schema.define(:version => 20130508210742) do
     t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "post_id"
   end
 
   create_table "video_files", :force => true do |t|
-    t.string   "caption"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "file"
+    t.integer  "video_album_id"
   end
 
 end

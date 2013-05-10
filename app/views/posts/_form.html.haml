@@ -1,2 +1,7 @@
 = simple_form_for @post do |f|
 	= f.input :content
+	= f.input :lat, as: :hidden
+	= f.input :lng, as: :hidden
+	= f.input :photo_ids, as: :hidden
+	= f.input :audio_ids, as: :hidden
+	= f.input :video_ids, as: :hidden

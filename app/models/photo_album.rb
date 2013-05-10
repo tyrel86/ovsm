@@ -1,7 +1,8 @@
 class PhotoAlbum < ActiveRecord::Base
   attr_accessible :title
-	
-	has_many :landscape_photos
-	has_many :portrait_photos
-	has_many :square_photos
+
+	belongs_to :post	
+	# has_many :landscape_photos, dependent: :destroy
+	# has_many :portrait_photos, dependent: :destroy
+	has_many :square_photos, dependent: :destroy
 end

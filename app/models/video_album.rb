@@ -1,5 +1,6 @@
 class VideoAlbum < ActiveRecord::Base
   attr_accessible :title
 
-	has_many :video_files
+	belongs_to :post	
+	has_many :video_files, dependent: :destroy
 end

@@ -1,0 +1,9 @@
+<% if @audio_file.new_record? %>
+  alert("Failed to upload photo: <%= j @audio_file.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+	OvsmLib.upload_cue -= 1
+	var old_val = $("#post_audio_ids").val();
+	var delimiter = ((old_val == "") ? "" : ",");
+	var new_val = old_val + delimiter + <%= @audio_file.id %>
+	$("#post_audio_ids").val( new_val )
+<% end %>

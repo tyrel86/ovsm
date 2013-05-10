@@ -1,5 +1,6 @@
 class AudioAlbum < ActiveRecord::Base
   attr_accessible :title
 	
-	has_many :audio_files
+	belongs_to :post	
+	has_many :audio_files, dependent: :destroy
 end

@@ -1,4 +1,9 @@
-<% if @square_photo.new_record? %>
-  alert("Failed to upload photo: <%= j @square_photos.errors.full_messages.join(', ').html_safe %>");
+<% unless @square_photo.valid? %>
+  alert("Failed to upload photo: <%= @square_photo.errors.full_messages.join(', ').html_safe %>");
 <% else %>
+	OvsmLib.upload_cue -= 1
+	var old_val = $("#post_photo_ids").val();
+	var delimiter = ((old_val == "") ? "" : ",");
+	var new_val = old_val + delimiter + <%= @square_photo.id %>
+	$("#post_photo_ids").val( new_val )
 <% end %>

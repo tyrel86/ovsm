@@ -6,9 +6,6 @@
 		#photos.link
 			.label Photos
 			.image= image_tag "icon-photo.png"
-		#links.link
-			.label Links
-			.image= image_tag "icon-link.png"
 		#audio.link
 			.label Audio
 			.image= image_tag "icon-audio.png"
@@ -19,11 +16,10 @@
 		= render "form"
 	#photos_tab.tab
 		= render "square_photos/form"
-	#links_tab.tab
-		A tab
 	#audio_tab.tab
-		A tab
+		= render "audio_files/form"
 	#videos_tab.tab
-		A tab
+		= render "video_files/form"
 	.submit_post
 		.text Submit Post
+	.processing Server Is Processing Uploads

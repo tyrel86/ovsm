@@ -1,7 +1,7 @@
 class CreateVideoFiles < ActiveRecord::Migration
   def change
     create_table :video_files do |t|
-      t.string :caption
+      t.string :name
 
       t.timestamps
     end

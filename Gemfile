@@ -46,6 +46,10 @@ gem 'omniauth-facebook', require: "omniauth-facebook"
 gem "haml-rails"
 gem 'active_link_to'
 
+#Server side fetching/parsing/processing libraries
+gem 'link_thumbnailer'
+gem 'sanitize'
+
 #Cient scripting libraries
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

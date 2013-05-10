@@ -1,0 +1,9 @@
+<% unless @video_file.valid? %>
+  alert("Failed to upload photo: <%= j @video_file.errors.full_messages.join(', ').html_safe %>");
+<% else %>
+	OvsmLib.upload_cue -= 1
+	var old_val = $("#post_video_ids").val();
+	var delimiter = ((old_val == "") ? "" : ",");
+	var new_val = old_val + delimiter + <%= @video_file.id %>
+	$("#post_video_ids").val( new_val )
+<% end %>

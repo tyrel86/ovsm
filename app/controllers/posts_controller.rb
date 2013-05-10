@@ -5,6 +5,8 @@ class PostsController < ApplicationController
 
   def create
 		@post = Post.new( params[:post] )
+		@post.user = current_user
+		@post.feed = Feed.closest_to( params[:post][:lat], params[:post][:lng] )
 		if @post.save
 			redirect_to feed_path( Feed.first ), notice: "Post created"
 		else
