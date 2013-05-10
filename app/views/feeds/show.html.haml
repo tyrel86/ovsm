@@ -1,4 +1,4 @@
-.span-24
+.span-24.feed_show_header
 	.banner
 		= image_tag @feed.feed_banners.where( active: true ).first.image, class: "feed_banner"
 		%h1.name.bullpen= @feed.name
@@ -36,5 +36,33 @@
 							= "#{values["low"]}&deg;".html_safe
 		= link_to_modal new_post_path do
 			.new_post <span>Make a Post</span>
-.span-24 Post posts and more post
+.span-24.feed_show_nav
+	.top_level
+		.people.active People
+		.businesses Businesses
+	.categories
+		.link.active#all
+			.label All
+			.image= image_tag "icon-text.png"
+		.link#text
+			.label Text
+			.image= image_tag "icon-text.png"
+		.link#photos
+			.label Photos
+			.image= image_tag "icon-photo.png"
+		.link#audio
+			.label Audio
+			.image= image_tag "icon-audio.png"
+		.link#links
+			.label Links
+			.image= image_tag "icon-link.png"
+		.link#videos
+			.label Videos
+			.image= image_tag "icon-movie.png"
+		= select_tag( :post_categories_select, options_for_select( ovsm_optionify( @post_categories ) ) )
+
+.span-24.ovsm_feed_engine
+		
+
 %time_data{ data: { time: @feed.current_time_stamp * 1000 }}
+%post_handle{ data: { handle: @feed.name } }

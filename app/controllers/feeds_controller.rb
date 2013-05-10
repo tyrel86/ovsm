@@ -19,6 +19,7 @@ class FeedsController < ApplicationController
 	def show
 		@feed = Feed.find_by_slug( params[:id] )
 		@forecast = @feed.forecast
+		@post_categories = PostCategory.all
 	end
 
 end

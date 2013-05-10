@@ -1,12 +1,15 @@
 @import "blue_print_import";
+@import "compass/css3";
 @import "partials/variables";
+@import "partials/mixins";
 @import "partials/fonts";
 @import "partials/main_header";
 @import "tabular_form";
+@import "ovsm_feed_engine";
 
 body {
 	background-color: white;
-	font-family: 'abeatbyKai'
+	font-family: 'abeatbyKai';
 }
 
 .bullpen {
@@ -115,36 +118,37 @@ body {
 	top: 100px;
 	left: 0px;
 	z-index: -1;
-	&#feeds_index {
-		#map {
-			height: 550px;
-		}
-		#feed_search {
-			background-image: url('/assets/feed_search.png');
+}
+
+#feeds_index {
+	#map {
+		height: 550px;
+	}
+	#feed_search {
+		background-image: url('/assets/feed_search.png');
+		position: absolute;
+		top: 10px;
+		right: 27px;
+		height: 95px;
+		width: 356px;
+		#feed_name {
 			position: absolute;
-			top: 10px;
-			right: 27px;
-			height: 95px;
-			width: 356px;
-			#feed_name {
-				position: absolute;
-				top: 22px;
-				left: 21px;
-				height: 31px;
-				width: 239px;
-			}
-			.invisible-plane {
-				position: absolute;
-				top: 15px;
-				left: 270px;
-				width: 86px;
-				height: 68px;
-				background: transparent;
-				border: none;
-				&:hover {
-					cursor: hand;
-					cursor: pointer;
-				}
+			top: 22px;
+			left: 21px;
+			height: 31px;
+			width: 239px;
+		}
+		.invisible-plane {
+			position: absolute;
+			top: 15px;
+			left: 270px;
+			width: 86px;
+			height: 68px;
+			background: transparent;
+			border: none;
+			&:hover {
+				cursor: hand;
+				cursor: pointer;
 			}
 		}
 	}
@@ -155,163 +159,230 @@ body {
 }
 
 #feeds_show {
-	.banner {
-		position:relative;
-		.feed_banner {
-			width: 634px;
-			height: 300px;
-			float: left;
-		}
-		.name {
-			position: absolute;
-			top: 7px;
-			left: 7px;
-			font-size: 42px;
-			color: white;
-		}
-	}
-	.weather_widget {
-		width: 316px;
+	.feed_show_header {
 		height: 300px;
-		background-color: $dark_grey;
-		float: right;
-		position: relative;
-		.left_col {
-			width: 170px;
-			height: 100%;
-			float: left;
-			color: white;
-			.section {
-				border-bottom: 2px solid $mid_grey;
-				position: relative;
-				&.tall {
-					height: 128px;
-				}
-				&.push_down {
-					height: 57px;
-					padding-top: 15px;
-				}
-				.name {
-					position: absolute;
-					top: 5px;
-					left: 7px;
-				}
-				.icon {
-					position: absolute;
-					top: 25px;
-					left: 7px;
-				}
-				.high {
-					position: absolute;
-					top: 0px;
-					left: 60px;
-					font-size: 52px;
-				}
-				.low {
-					position: absolute;
-					top: 50px;
-					left: 124px;
-					font-size: 19px;
-					color: #69889A;
-				}
-				.icon {
-					img {
-						width: 50px;
-					}
-				}
-				.digital_clock {
-					position: absolute;
-					top: 82px;
-					left: 7px;
-				}
-				.users {
-					padding: 5px;
-					font-size: 16px;
-				}
-				.video {
-					float: left;
-					img {
-						width: 42px;
-					}
-				}
-				.video_button {
-					float: left;
-					background-color: #0191CF;
-					width: 100px;
-					@include border-radius(4px, 4px);
-					color: white;
-					font-size: 12px;
-					padding: 3px;	
-					font-weight: bold;
-					position: relative;
-					top: -2px;
-					left: 5px;
-					width: 150px;
-					.video_text {
-						position: relative;
-						top: 9px;
-						left: 2px;
-						font-size: 13px;
-					}
-				}
+		.banner {
+			position:relative;
+			.feed_banner {
+				width: 634px;
+				height: 300px;
+				float: left;
+			}
+			.name {
+				position: absolute;
+				top: 7px;
+				left: 7px;
+				font-size: 42px;
+				color: white;
 			}
 		}
-		.right_col {
-			width: 146px;
-			height: 100%;
-			float: left;
-			background-color: $mid_grey;
-			height: 252px;
-			table {
-				tr {
-					height: 42px;
-					.day_name {
-						color: #6D6C6A;
+		.weather_widget {
+			width: 316px;
+			height: 300px;
+			background-color: $dark_grey;
+			float: right;
+			position: relative;
+			.left_col {
+				width: 170px;
+				height: 100%;
+				float: left;
+				color: white;
+				.section {
+					border-bottom: 2px solid $mid_grey;
+					position: relative;
+					&.tall {
+						height: 128px;
+					}
+					&.push_down {
+						height: 57px;
+						padding-top: 15px;
+					}
+					.name {
+						position: absolute;
+						top: 5px;
+						left: 7px;
+					}
+					.icon {
+						position: absolute;
+						top: 25px;
+						left: 7px;
+					}
+					.high {
+						position: absolute;
+						top: 0px;
+						left: 60px;
+						font-size: 52px;
+					}
+					.low {
+						position: absolute;
+						top: 50px;
+						left: 124px;
+						font-size: 19px;
+						color: #69889A;
 					}
 					.icon {
 						img {
-							width: 25px;
+							width: 50px;
 						}
 					}
-					.high {
+					.digital_clock {
+						position: absolute;
+						top: 82px;
+						left: 7px;
+					}
+					.users {
+						padding: 5px;
+						font-size: 16px;
+					}
+					.video {
+						float: left;
+						img {
+							width: 42px;
+						}
+					}
+					.video_button {
+						float: left;
+						background-color: #0191CF;
+						width: 100px;
+						@include border-radius(4px, 4px);
 						color: white;
-					}
-					.low {
-						color: #69889A;
-					}
-					.temp {
-						font-size: 14px;
-						font-weight: bolder;
-					}
-					td {
-						padding: 4px;
+						font-size: 12px;
+						padding: 3px;	
+						font-weight: bold;
+						position: relative;
+						top: -2px;
+						left: 5px;
+						width: 150px;
+						.video_text {
+							position: relative;
+							top: 9px;
+							left: 2px;
+							font-size: 13px;
+						}
 					}
 				}
 			}
-		}
-		.new_post {
-			width: 100%;
-			position: absolute;
-			top: 260px;
-			height: 33px;
-			width: 133px;
-			left: 92px;
-			text-align: center;
-			padding-top: 0px;
-			font-size: 14px;
-			color: white;
-			background-color: #0191CF;
-			@include border-radius(4px, 4px);
-			font-weight: bold;
-			span {
-				position: relative;
-				top: 7px;
+			.right_col {
+				width: 146px;
+				height: 100%;
+				float: left;
+				background-color: $mid_grey;
+				height: 252px;
+				table {
+					tr {
+						height: 42px;
+						.day_name {
+							color: #6D6C6A;
+						}
+						.icon {
+							img {
+								width: 25px;
+							}
+						}
+						.high {
+							color: white;
+						}
+						.low {
+							color: #69889A;
+						}
+						.temp {
+							font-size: 14px;
+							font-weight: bolder;
+						}
+						td {
+							padding: 4px;
+						}
+					}
+				}
 			}
-			a {
-				color: white;
+			.new_post {
+				width: 100%;
+				position: absolute;
+				top: 260px;
+				height: 33px;
+				width: 133px;
+				left: 92px;
+				text-align: center;
+				padding-top: 0px;
 				font-size: 14px;
-				text-decoration: none;
+				color: white;
+				background-color: #0191CF;
+				@include border-radius(4px, 4px);
+				font-weight: bold;
+				span {
+					position: relative;
+					top: 7px;
+				}
+				a {
+					color: white;
+					font-size: 14px;
+					text-decoration: none;
+				}
 			}
+		}
+	}
+	.feed_show_nav {
+		$nav_top_margin: 7px;
+		.top_level {
+			margin-top: $nav_top_margin;
+			$top_level_height: 25px;
+			height: $top_level_height;
+			div {
+				text-align: center;
+				font-size: 21px;
+				width: 49.7%;
+				height: $top_level_height;
+				@include background-image(linear-gradient(color-stops($light_green, $dark_green)));
+				color: white;
+				&.active {
+					@include background-image(linear-gradient(color-stops($alt_light_blue, $alt_dark_blue)));
+				}
+			}
+			.people {
+				float: left;
+			}
+			.businesses {
+				float: right;
+			}
+		}
+		.categories {
+			position: relative;
+			width: 100%;
+			height: 100px;
+			margin-top: $nav_top_margin;
+			@include background-image(linear-gradient(color-stops($light_orange, $dark_orange)));
+			.link {
+				float: left;
+				position: relative;
+				top: 25px;
+				right: -25px;
+				height: 75px;
+				width: 75px;
+				text-align: center;
+				&.active {
+					background-color: white;
+					@include border-top-left-radius( 7px );
+					@include border-top-right-radius( 7px );
+				}
+				$category_link_top_push: 15px;
+				.label {
+					position: relative;
+					top: $category_link_top_push;
+				}
+				.image {
+					position: relative;
+					top: $category_link_top_push;
+				}
+			}
+		}
+		#post_categories_select {
+			position: absolute;
+			top: 27px;
+			left: 655px;
+			background-color: white;
+			font-size: 20px;
+			font-family: 'abeatbyKai';
+			padding: 7px;
 		}
 	}
 }

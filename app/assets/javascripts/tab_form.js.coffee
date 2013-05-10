@@ -60,6 +60,7 @@ jQuery ->
 
 		$("#new_audio_file").fileupload
 			dataType: "script"
+			replaceFileInput: false
 			add: (e, data) ->
 				$("#upload_audio").on('click', ->
 					OvsmLib.upload_cue += 1
@@ -78,6 +79,7 @@ jQuery ->
 
 		$("#new_video_file").fileupload
 			dataType: "script"
+			replaceFileInput: false
 			add: (e, data) ->
 				$("#upload_video").on('click', ->
 					OvsmLib.upload_cue += 1

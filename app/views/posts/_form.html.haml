@@ -1,4 +1,5 @@
 = simple_form_for @post do |f|
+	= f.association :post_category, label: "Select the type of post you are writing", include_blank: false
 	= f.input :content
 	= f.input :lat, as: :hidden
 	= f.input :lng, as: :hidden

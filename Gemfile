@@ -34,6 +34,7 @@ gem 'simple_form'
 gem "rmagick"
 gem 'carrierwave'
 gem "fog"
+gem 'geokit-rails3'
 
 #Language time and location libraries
 gem 'timezone'

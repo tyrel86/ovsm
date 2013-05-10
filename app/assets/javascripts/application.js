@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.modal
+//= require jquery.nano
 //= require misc
 //= require object_watch
 //= require feeds
@@ -23,6 +24,7 @@
 //= require geoip2
 //= require user_location
 //= require tab_form
+//= require ovsm_feed_engine
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 

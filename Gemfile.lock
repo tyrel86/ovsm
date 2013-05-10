@@ -127,6 +127,11 @@ GEM
     formtastic (2.2.1)
       actionpack (>= 3.0)
     fssm (0.2.10)
+    geokit (1.6.5)
+      multi_json
+    geokit-rails3 (0.1.5)
+      geokit (~> 1.5)
+      rails (~> 3.0)
     haml (4.0.2)
       tilt
     haml-rails (0.4)
@@ -308,6 +313,7 @@ DEPENDENCIES
   factory_girl
   faker
   fog
+  geokit-rails3
   haml-rails
   jbuilder
   jquery-fileupload-rails!

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130509213501) do
+ActiveRecord::Schema.define(:version => 20130510220147) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -151,10 +151,21 @@ ActiveRecord::Schema.define(:version => 20130509213501) do
     t.string   "photo"
   end
 
-  create_table "posts", :force => true do |t|
-    t.text     "content"
+  create_table "post_categories", :force => true do |t|
+    t.string   "name"
+    t.string   "helper"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.text     "content"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "feed_id"
+    t.integer  "user_id"
+    t.integer  "post_category_id"
+    t.boolean  "promotional"
   end
 
   create_table "square_photos", :force => true do |t|
