@@ -36,7 +36,6 @@ gem 'rmagick'
 gem 'carrierwave'
 gem 'fog'
 gem 'geokit-rails3'
-gem 'will_paginate'
 
 #Language time and location libraries
 gem 'timezone'
