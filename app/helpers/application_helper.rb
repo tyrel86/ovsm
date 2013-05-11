@@ -8,7 +8,7 @@ module ApplicationHelper
 
 	def ovsm_optionify( model_array )
 		model_array.inject([]) do |result,model|
-			element = [ model.name, model.name ]
+			element = [ model.name, model.id ]
 			result.push element
 		end
 	end

@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.modal
-//= require jquery.nano
+//= require knockout-2.2.1
 //= require misc
 //= require object_watch
 //= require feeds

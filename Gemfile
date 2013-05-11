@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-#Core libraries
+#Core libraries/ORMS/DSLS
 gem 'rails', '3.2.13'
 gem 'pg'
+gem 'squeel'
 
 #Asset pipeline
 group :assets do
@@ -31,10 +32,11 @@ end
 gem 'activeadmin'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'simple_form'
-gem "rmagick"
+gem 'rmagick'
 gem 'carrierwave'
-gem "fog"
+gem 'fog'
 gem 'geokit-rails3'
+gem 'will_paginate'
 
 #Language time and location libraries
 gem 'timezone'

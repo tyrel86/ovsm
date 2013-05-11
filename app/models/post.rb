@@ -26,9 +26,9 @@ class Post < ActiveRecord::Base
 	# End result could be nil or []
 
 	def initilize_dependancies
-		self.build_photo_album
-		self.build_audio_album
-		self.build_video_album
+		self.build_photo_album unless photo_album
+		self.build_audio_album unless audio_album
+		self.build_video_album unless video_album
 	end
 
 	def consolidate_albums
@@ -43,8 +43,9 @@ class Post < ActiveRecord::Base
 		end		
 	end
 
-	scope :with_photos, joins( :photo_album.outer )
-	scope :has_photos, with_photos.where('posts.photo_album is not NULL')
-	scope :has_audio, where('posts.audio_album_id is not NULL')
-	scope :has_video, where('posts.video_album_id is not NULL')
+	scope :with_text, where{ content != "" }
+	scope :with_photos, joins{ photo_album.square_photos.inner }
+	scope :with_links, joins{ page_links.inner }
+	scope :with_audio, joins{ audio_album.audio_files.inner }
+	scope :with_video, joins{ video_album.video_files.inner }
 end
