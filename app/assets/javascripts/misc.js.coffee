@@ -8,5 +8,5 @@ jQuery ->
 	$("a.active").first().parent().addClass("active")
 	
 	#Signup form click listener
-	$(".sign_up_button").click ->
+	$(".sign_up_button").unbind('click').click ->
 		$(".sign_up_form").toggle("slow")
