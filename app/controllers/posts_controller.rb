@@ -32,9 +32,9 @@ class PostsController < ApplicationController
 			@post.feed = Feed.find_by_name( "Denver, CO" )
 		end
 		if @post.save
-			redirect_to feed_path( Feed.first ), notice: "Post created"
+			redirect_to feed_path( @post.feed ), notice: "Post created"
 		else
-			redirect_to feed_path( Feed.first ), notice: "Error while tyring to create post"
+			redirect_to feed_path( @post.feed ), notice: "Error while tyring to create post"
 		end
   end
 
