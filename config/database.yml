@@ -17,5 +17,5 @@ production:
   encoding: unicode
   database: ovsm_production
   pool: 5
-  username: postgres
+  username: tyrel
   password: SQL_BuddhA024878
