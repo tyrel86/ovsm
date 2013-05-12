@@ -23,6 +23,13 @@ class User < ActiveRecord::Base
 	has_many :audio_files
 
 	class << self
+		def authenticate(login, password)
+      if (user = where{ (email == login) | (username == login) }.first) and user.valid_password? password
+      	user
+      else
+      	nil
+			end
+    end
 		def find_first_by_auth_conditions(warden_conditions)
 			conditions = warden_conditions.dup
 			if login = conditions.delete(:login)

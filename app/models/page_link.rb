@@ -1,14 +1,20 @@
 class PageLink < ActiveRecord::Base
   attr_accessible :url, :description, :image_url, :title
 
-	belongs_to :post
+	has_and_belongs_to_many :posts
 
-	before_create :fetch_data
+	validate :fetch_data
 
 	def fetch_data
-		object = LinkThumbnailer.generate( url )
-		self.title = object.title
-		self.description = object.description
-		self.image_url = object.images.first.source_url
+		begin
+			object = LinkThumbnailer.generate( url )
+			self.title = object.title
+			self.description = object.description
+			self.image_url = object.images.first.source_url.to_s
+		rescue
+			self.errors[:url] << "Could not connect with #{url}"
+			return false
+		end
 	end
+
 end
