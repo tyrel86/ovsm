@@ -9,4 +9,4 @@ jQuery ->
 	
 	#Signup form click listener
 	$(".sign_up_button").unbind('click').click ->
-		$(".sign_up_form").toggle("slow")
+		$(".sign_up_form").slideToggle("slow")
