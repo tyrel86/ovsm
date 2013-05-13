@@ -61,7 +61,8 @@
 			.image= image_tag "icon-movie.png"
 		= select_tag( :post_categories_select, options_for_select( ovsm_optionify( @post_categories ) ) )
 
-.span-24.ovsm_feed_engine(data-bind="template: { name: 'postTemplate', foreach: posts, as: 'post' }")
+.span-24
+	.ovsm_feed_engine(data-bind="template: { name: 'postTemplate', foreach: posts, as: 'post' }")
 
 %time_data{ data: { time: @feed.current_time_stamp * 1000 }}
 %post_handle{ data: { handle: @feed.name } }

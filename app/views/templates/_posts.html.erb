@@ -1,13 +1,14 @@
 <script type="text/html" id="postTemplate">
-    <div>
+    <div class="single_post thumb" data-bind="css: { 'last': $index() % 3 == 0, 'first': $index() == 0 }">
         <p data-bind="text: content"></p>
+        <ul data-bind="text: content">
+					<li data->
+				</ui>
     </div>
 </script>
  
-<script type="text/html" id="monthTemplate">
-    <li>
-        <span data-bind="text: month"></span>
-        is in
-        <span data-bind="text: season.name"></span>
-    </li>
+<script type="text/html" id="audioTemplate">
+    <ul>
+    	<li>Hello</li>
+    </ul>
 </script>

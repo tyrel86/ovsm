@@ -18,7 +18,6 @@
 //= require knockout-2.2.1
 //= require misc
 //= require object_watch
-//= require feeds
 //= require jqClock.min
 //= require digital_clock
 //= require geoip2

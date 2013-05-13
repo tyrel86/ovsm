@@ -8,7 +8,8 @@
 @import "ovsm_feed_engine";
 
 body {
-	background-color: white;
+	// @include background-image(linear-gradient(left, color-stops($dark_grey, $mid_grey 20%, $light_grey 50%, $mid_grey 80%, $dark_grey 100%)));
+	@include background-image(linear-gradient(left, color-stops($dark_grey, $light_grey 50%, $dark_grey 100%)));
 	font-family: 'abeatbyKai';
 }
 
@@ -379,6 +380,7 @@ body {
 			width: 100%;
 			height: 100px;
 			margin-top: $nav_top_margin;
+			margin-bottom: 10px;
 			@include background-image(linear-gradient(color-stops($light_orange, $dark_orange)));
 			.link {
 				float: left;

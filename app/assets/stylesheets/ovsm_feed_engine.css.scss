@@ -1,0 +1,22 @@
+.ovsm_feed_engine {
+	$container_width: 950px;
+	$post_margin: 10px;
+	$number_posts_per_row: 4;
+	$thumb_hight_width: ($container_width - ($post_margin * ($number_posts_per_row - 1))) / $number_posts_per_row;
+	.single_post {
+		background: white;
+		&.thumb {
+			float: left;
+			width: $thumb_hight_width;
+			height: $thumb_hight_width;
+			margin-right: $post_margin;
+			margin-bottom: $post_margin;
+			&.last {
+				margin-right: 0px;
+			}
+			&.first {
+				margin-right: $post_margin;
+			}
+		}
+	}
+}

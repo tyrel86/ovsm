@@ -37,6 +37,9 @@ jQuery ->
 			for post in @json_data.posts
 				post_object =
 					content: post.content
+					audio_files: []
+				for audio_file in post.audio_album.audio_files
+					post_object.audio_files.push {name: audio_file.name, url: audio_file.file.url}
 				posts_array.push( post_object )
 
 			viewModel =
