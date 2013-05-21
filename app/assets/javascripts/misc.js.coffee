@@ -11,6 +11,12 @@ jQuery ->
 		#Audio
 		mp3: "audio/mp3"
 
+	#Initilize Sound Manager
+	soundManager.url = '/assets/soundmanager2_flash9.swf'
+	soundManager.flashVersion = 9
+	soundManager.useHTML5Audio = true
+	soundManager.debugMode = false
+
 	#Set nav bar active link to parrent
 	$("a.active").first().parent().addClass("active")
 	

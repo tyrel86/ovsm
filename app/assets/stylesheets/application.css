@@ -12,6 +12,7 @@
  *= require jqClock
  *= require main
  *= require flowplayer-minimalist
+ *= require fancy_music_player/jquery.fancyMusicPlayer-black.css
  *= require jquery.ui.all
  *= require jquery.modal
  *= require jquery.fileupload-ui

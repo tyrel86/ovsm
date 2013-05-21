@@ -36,7 +36,9 @@
 			<!-- /ko -->
 
 			<!-- ko if: thumb_style == 'audio' -->
-				<div id="audio_player"></div>
+				<div class="music_player" data-bind="foreach: audio">
+					<a data-bind="attr: {href: file.url, title: name}"></a>
+				</div>
 			<!-- /ko -->
 
     </div>
