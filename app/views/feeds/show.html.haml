@@ -18,7 +18,7 @@
 				= link_to "#" do
 					.video_button
 						.video= image_tag "video.png"
-						.video_text Watch City Clip
+						.video_text City Vid
 			
 		.right_col
 			%table
@@ -34,8 +34,6 @@
 							= "#{values["high"]}&deg;".html_safe
 						%td.low.temp
 							= "#{values["low"]}&deg;".html_safe
-		= link_to_modal new_post_path do
-			.new_post <span>Make a Post</span>
 .span-24.feed_show_nav
 	.top_level
 		.people.active People
@@ -43,7 +41,7 @@
 	.categories
 		.link.active#all
 			.label All
-			.image= image_tag "icon-text.png"
+			.image= image_tag "icon-all.png"
 		.link#text
 			.label Text
 			.image= image_tag "icon-text.png"

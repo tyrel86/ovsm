@@ -1,14 +1,43 @@
 <script type="text/html" id="postTemplate">
-    <div class="single_post thumb" data-bind="css: { 'last': $index() % 3 == 0, 'first': $index() == 0 }">
-        <p data-bind="text: content"></p>
-        <ul data-bind="text: content">
-					<li data->
-				</ui>
+    <div data-bind="attr: {class: 'post_thumb ' + thumb_style}">
+
+			<!-- ko if: thumb_style == 'text'  -->
+				<p data-bind="text: exerpt"></p>
+			<!-- /ko -->
+
+			<!-- ko if: thumb_style == 'video' -->
+				<div class="flowplayer">
+					<video data-bind="with: videos[0]">
+						<source data-bind="attr:{ type: ext, src: file.url }">
+					</video>
+
+
+					<!-- ko if: videos.length > 1 -->
+						<a class="fp-prev">prev</a>
+						<a class="fp-next">next</a>
+						<div class="fp-playlist" data-bind="foreach: videos">
+							<a data-bind="attr: {href: file.url}"></a>
+					 </div>
+					<!--/ko -->
+				</div>
+			<!-- /ko -->
+
+			<!-- ko if: thumb_style == 'photo' -->
+				<div class="photo_album" data-bind="foreach: photos">
+					<!-- ko if: $index() == 0 -->
+						<div class="next controll on"><div class="inner"></div></div>
+						<div class="previous controll"><div class="inner"></div></div>
+					<!-- /ko -->
+					<div data-bind="attr: { class: ($index() == 0) ? 'active slide' : 'slide'}">
+						<img data-bind="attr: {src: photo.thumb.url}">
+						<p class="caption" data-bind="text: caption"></p>
+					</div>
+				</div>
+			<!-- /ko -->
+
+			<!-- ko if: thumb_style == 'audio' -->
+				<div id="audio_player"></div>
+			<!-- /ko -->
+
     </div>
-</script>
- 
-<script type="text/html" id="audioTemplate">
-    <ul>
-    	<li>Hello</li>
-    </ul>
 </script>

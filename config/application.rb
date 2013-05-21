@@ -65,6 +65,7 @@ module Ovsm
 		#Add fonts to asset pipeline
 		# Add the fonts path
 		config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+		config.assets.paths << Rails.root.join('app', 'assets', 'flash')
 
 		# Precompile additional assets
 		config.assets.precompile += %w( .svg .eot .woff .ttf )

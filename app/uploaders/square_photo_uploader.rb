@@ -15,10 +15,10 @@ class SquarePhotoUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process :resize_to_fill => [186,186]
+    process :resize_to_fill => [230,230]
   end
 
   version :large do
-    process :resize_to_fill => [372,372]
+    process :resize_to_fill => [690,690]
   end
 end

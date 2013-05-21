@@ -6,4 +6,9 @@ class SessionsController < ApplicationController
 		end
 		redirect_to feeds_path
 	end
+
+	def destroy
+		env['warden'].set_user(nil)
+		redirect_to root_path
+	end
 end

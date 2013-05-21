@@ -45,15 +45,31 @@ body {
 			font-family: 'abeatbyKai';
 			position: absolute;
 			width: 33%;
-			left: 67%;
+			left: 56%;
 			input {
-				width: 135px;
 				position: absolute;
+			}
+			#user_login {
+				width: 135px;
 				top: 20px;
-				left: 0px;
+				left: 0px!important;
 			}
 			#user_password {
+				width: 135px;
+				top: 20px;
 				left: 165px!important;
+			}
+			#user_remember_me {
+				width: 135px;
+				top: 2px;
+				left: 42px!important;
+			}
+			label.boolean.optional {
+				position: absolute;
+				left: -2px;
+				color: white;
+				width: 100px;
+				top: 2px;
 			}
 			.button {
 				&:hover {
@@ -73,7 +89,7 @@ body {
 	}
 	.bullpen {
 		position: absolute;
-		top: 33%;
+		top: 27%;
 		left: 3%;
 		width: 45%;
 		font-size: 70px;
@@ -81,7 +97,7 @@ body {
 	.logo {
 		position: absolute;
 		top: 1%;
-		left: 33%;
+		left: 10.9%;
 	}
 	.facebook {
 		width: 255px;
@@ -191,9 +207,12 @@ body {
 #feeds_show {
 	.feed_show_header {
 		height: 300px;
+		border: 1px solid rgba(255,255,255,0.3);
+		@include box-sizing(border-box);
 		.banner {
 			position:relative;
 			.feed_banner {
+				border-bottom: 1px solid rgba(255,255,255,0.3);
 				width: 634px;
 				height: 300px;
 				float: left;
@@ -207,25 +226,29 @@ body {
 			}
 		}
 		.weather_widget {
-			width: 316px;
+			width: 314px;
 			height: 300px;
 			background-color: $dark_grey;
 			float: right;
 			position: relative;
+			border-bottom: 1px solid rgba(255,255,255,0.3);
 			.left_col {
-				width: 170px;
+				width: 168px;
 				height: 100%;
 				float: left;
 				color: white;
+				border-right: 1px solid rgba(255,255,255,0.3);
+				border-left: 1px solid rgba(255,255,255,0.3);
 				.section {
 					border-bottom: 2px solid $mid_grey;
 					position: relative;
+					height: 52px;
 					&.tall {
 						height: 128px;
 					}
 					&.push_down {
-						height: 57px;
-						padding-top: 15px;
+						height: 95px;
+						padding-top: 19px;
 					}
 					.name {
 						position: absolute;
@@ -263,6 +286,9 @@ body {
 					.users {
 						padding: 5px;
 						font-size: 16px;
+						position: relative;
+						top: 10px;
+						left: 18px;
 					}
 					.video {
 						float: left;
@@ -272,35 +298,42 @@ body {
 					}
 					.video_button {
 						float: left;
-						background-color: #0191CF;
-						width: 100px;
+						// @include background-image(linear-gradient(color-stops($alt_light_blue, $alt_dark_blue)));
+						background-color: $alt_light_blue;
+						border: 1px solid rgba(255,255,255,0.3);
+						&:hover {
+							background-color: $alt_dark_blue;
+						}
 						@include border-radius(4px, 4px);
 						color: white;
-						font-size: 12px;
 						padding: 3px;	
 						font-weight: bold;
 						position: relative;
-						top: -2px;
-						left: 5px;
-						width: 150px;
+						top: 16px;
+						left: 16px;
+						width: 130px;
+						.video {
+							position: relative;
+							top: 3px;
+						}
 						.video_text {
 							position: relative;
 							top: 9px;
 							left: 2px;
-							font-size: 13px;
+							font-size: 17px;
 						}
 					}
 				}
 			}
 			.right_col {
-				width: 146px;
+				width: 144px;
 				height: 100%;
 				float: left;
 				background-color: $mid_grey;
-				height: 252px;
+				height: 300px;
 				table {
 					tr {
-						height: 42px;
+						height: 50px;
 						.day_name {
 							color: #6D6C6A;
 						}
@@ -378,18 +411,19 @@ body {
 		.categories {
 			position: relative;
 			width: 100%;
-			height: 100px;
+			height: 90px;
 			margin-top: $nav_top_margin;
 			margin-bottom: 10px;
 			@include background-image(linear-gradient(color-stops($light_orange, $dark_orange)));
 			.link {
 				float: left;
 				position: relative;
-				top: 25px;
+				top: 15px;
 				right: -25px;
 				height: 75px;
 				width: 75px;
 				text-align: center;
+				margin-right: 22px;
 				&.active {
 					background-color: white;
 					@include border-top-left-radius( 7px );
@@ -408,7 +442,7 @@ body {
 		}
 		#post_categories_select {
 			position: absolute;
-			top: 27px;
+			top: 22px;
 			left: 655px;
 			background-color: white;
 			font-size: 20px;

@@ -2,4 +2,5 @@
 	= simple_form_for User.new, url: sessions_path do |f|
 		= f.input :login, :required => false, :autofocus => true, label: false, placeholder: "Username"
 		= f.input :password, :required => false, label: false, placeholder: "Password"
+		= f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
 		= f.button :submit, "Sign in"

@@ -8,6 +8,7 @@ $header_height: 100px;
 	background-color: $light_blue;
 	@include background-image(linear-gradient(color-stops($dark_blue, $light_blue)));
 	z-index: 1;
+	border-bottom: 1px solid rgba(255,255,255,0.3);
 	.header_container {
 		position: relative;
 		width: 950px;
@@ -87,6 +88,10 @@ $header_height: 100px;
 						img.home {
 							position: relative;
 							left: -8px;
+						}
+						img.new_post {
+							position: relative;
+							top: -5px;
 						}
 					}
 					ul {
