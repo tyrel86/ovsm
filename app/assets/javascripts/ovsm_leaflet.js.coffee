@@ -2,7 +2,7 @@ jQuery ->
 	if $("#map").size() > 0
 		$("#map").css("height",$(window).height() - 100)
 
-		map = L.map('map').setView([30, 0], 3)
+		map = L.map('map').setView([37, -90], 4)
 		# map.fitBounds([[-90, -180],[90, 180]])
 
 		cloud_made =

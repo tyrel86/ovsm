@@ -60,6 +60,10 @@ class Post < ActiveRecord::Base
 		end		
 	end
 
+	def exerpt
+		HTML_Truncator.truncate(content, 20)
+	end
+
 	scope :with_text, where{ content != "" }
 	scope :with_photos, joins{ photo_album.square_photos.inner }
 	scope :with_links, joins{ page_links.inner }

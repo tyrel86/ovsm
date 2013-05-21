@@ -15,16 +15,20 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.modal
+//= require jquery.grab
+//= require jquery.jplayer.min
+//= require jplayer.playlist.min
+//= require jquery.jplayer.inspector
 //= require knockout-2.2.1
 //= require misc
 //= require object_watch
-//= require feeds
 //= require jqClock.min
 //= require digital_clock
 //= require geoip2
 //= require user_location
 //= require tab_form
 //= require ovsm_feed_engine
+//= require flowplayer.min
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 

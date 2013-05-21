@@ -6,9 +6,11 @@
 				%li{ class: "link" }
 					= active_link_to "#" do
 						= image_tag "home.png", class: :home
-				%li= active_link_to "My Profile", "#"
+				%li= active_link_to "Profile", "#"
 				%li= active_link_to "Zones", feeds_path
-				%li= active_link_to "Travel", "#"
 				%li= active_link_to "Connect", "#"
 				%li= active_link_to "Account", "#"
+				%li
+					=link_to_modal new_post_path do
+						= image_tag "create_post.png", class: :new_post
 		.nav_right

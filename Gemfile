@@ -51,6 +51,7 @@ gem 'active_link_to'
 #Server side fetching/parsing/processing libraries
 gem 'link_thumbnailer'
 gem 'sanitize'
+gem 'html_truncator'
 
 #Cient scripting libraries
 gem 'jquery-rails'

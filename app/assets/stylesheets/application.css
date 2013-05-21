@@ -11,6 +11,7 @@
  *= require_self
  *= require jqClock
  *= require main
+ *= require flowplayer-minimalist
  *= require jquery.ui.all
  *= require jquery.modal
  *= require jquery.fileupload-ui

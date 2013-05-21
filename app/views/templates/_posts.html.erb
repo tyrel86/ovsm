@@ -1,13 +1,43 @@
 <script type="text/html" id="postTemplate">
-    <div>
-        <p data-bind="text: content"></p>
+    <div data-bind="attr: {class: 'post_thumb ' + thumb_style}">
+
+			<!-- ko if: thumb_style == 'text'  -->
+				<p data-bind="text: exerpt"></p>
+			<!-- /ko -->
+
+			<!-- ko if: thumb_style == 'video' -->
+				<div class="flowplayer">
+					<video data-bind="with: videos[0]">
+						<source data-bind="attr:{ type: ext, src: file.url }">
+					</video>
+
+
+					<!-- ko if: videos.length > 1 -->
+						<a class="fp-prev">prev</a>
+						<a class="fp-next">next</a>
+						<div class="fp-playlist" data-bind="foreach: videos">
+							<a data-bind="attr: {href: file.url}"></a>
+					 </div>
+					<!--/ko -->
+				</div>
+			<!-- /ko -->
+
+			<!-- ko if: thumb_style == 'photo' -->
+				<div class="photo_album" data-bind="foreach: photos">
+					<!-- ko if: $index() == 0 -->
+						<div class="next controll on"><div class="inner"></div></div>
+						<div class="previous controll"><div class="inner"></div></div>
+					<!-- /ko -->
+					<div data-bind="attr: { class: ($index() == 0) ? 'active slide' : 'slide'}">
+						<img data-bind="attr: {src: photo.thumb.url}">
+						<p class="caption" data-bind="text: caption"></p>
+					</div>
+				</div>
+			<!-- /ko -->
+
+			<!-- ko if: thumb_style == 'audio' -->
+				<div id="audio_player"></div>
+			<!-- /ko -->
+
     </div>
-</script>
- 
-<script type="text/html" id="monthTemplate">
-    <li>
-        <span data-bind="text: month"></span>
-        is in
-        <span data-bind="text: season.name"></span>
-    </li>
 </script>
