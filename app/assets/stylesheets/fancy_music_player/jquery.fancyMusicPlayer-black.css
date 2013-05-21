@@ -1,0 +1,474 @@
+/*
+* Fancy Music Player V2.1.2
+* Author: Rafael Dery
+* Copyright 2011
+*
+* Only for the sale at the envato marketplaces
+*
+*/
+
+.fmp-container {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	font-size: 10px;
+	color: white;
+}
+
+/* Previous button */
+.fmp-previous-button {
+	width: 22px;
+	height: 22px;
+	top: 4px;
+	margin-right: 3px;
+	position: relative;
+	float: left;
+}
+
+/* Next button */
+.fmp-next-button {
+	width: 22px;
+	height: 22px;
+	top: 4px;
+	margin-left: 3px;
+	position: relative;
+	float: left;
+}
+
+/* Play/pause button */
+.fmp-pp-button {
+	width: 32px;
+	height: 32px;
+	position: relative;
+	float: left;
+}
+
+/* States for hover/active of the previous/next buttons */
+.fmp-previous-button-normal, .fmp-next-button-normal {
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -95px 0px;
+}
+
+.fmp-previous-button-hover, .fmp-next-button-hover {
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -70px 0px;
+}
+
+.fmp-previous-button-press, .fmp-next-button-press {
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat 0px -25px;
+}
+
+/* States for hover/active of the play/pause buttons */
+.fmp-pause-button-normal {
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -60px -25px;
+}
+
+.fmp-pause-button-hover {
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -25px -25px;
+}
+
+.fmp-play-button-normal {
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -60px -25px;
+}
+
+.fmp-play-button-hover {
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -25px -25px;
+}
+
+/* Previous icon */
+.fmp-previous {
+	width: 10px;
+	height: 9px;
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -95px -25px;
+	margin: 7px 0px 0px 6px;
+}
+
+/* Next icon */
+.fmp-next {
+	width: 10px;
+	height: 9px;
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -23px 0px;
+	margin: 7px 0px 0px 8px;
+}
+
+/* Play icon */
+.fmp-play {
+	width: 10px;
+	height: 12px;
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -44px 1px;
+	position: relative;
+	margin: 9px 0px 0px 12px;
+}
+
+/* Pause icon */
+.fmp-pause {
+	width: 10px;
+	height: 16px;
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -33px 3px;
+	position: relative;
+	margin: 7px 0px 0px 11px;
+}
+
+.fmp-time-bar {
+	width: 120px; /* Change here the width of the time bar */
+	height: 5px;
+	background: #1a1a1a;
+	margin: 12px 0px 0px 6px;
+	padding: 3px;
+	float: left;
+	position: relative;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0px 1px 0px 0px #1f1f1f, inset 0px 1px 0px 0px #161616;
+	-moz-box-shadow: 0px 1px 0px 0px #1f1f1f, inset 0px 1px 0px 0px #161616;
+	box-shadow: 0px 1px 0px 0px #1f1f1f, inset 0px 1px 0px 0px #161616;
+}
+
+/* The time tooltip */
+.fmp-time-bar .fmp-time {
+	height: 19px;
+	padding: 0px 4px;
+	background: #323232;
+	border: 1px solid #0d0d0d;
+	position: absolute;
+	top: -30px;
+	line-height: 19px;
+	text-align: center;
+	color: #a6a6a6;
+	font-size: 9px;
+	font-weight: bold;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px; 
+	-webkit-box-shadow: inset 0px -10px 20px -10px #232323, inset 0px 1px 1px 0px #424242;
+	-moz-box-shadow: inset 0px -10px 20px -10px #232323, inset 0px 1px 1px 0px #424242;
+	box-shadow: inset 0px -10px 20px -10px #232323, inset 0px 1px 1px 0px #424242;
+}
+
+/* The arrow border of the time tooltip */
+.fmp-time-bar .fmp-time-arrow-border {
+	border-color: #0d0d0d transparent transparent;
+    border-style: solid;
+    border-width: 6px;
+    top: 19px;
+    height: 0;
+    left: 9px;
+    position: absolute;
+    width: 0;	
+}
+
+/* The arrow of the time tooltip */
+.fmp-time-bar .fmp-time-arrow {
+	border-color: #222222 transparent transparent;
+    border-style: solid;
+    border-width: 4px;
+    top: 19px;
+    height: 0;
+    left: 11px;
+    position: absolute;
+    width: 0;	
+}
+
+/* Loading bar that shows how much of the mp3 has been loaded */
+.fmp-time-bar .fmp-loading-bar {
+	height: 6px;
+	position: absolute;
+	background: #2b2b2b;
+	-webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+	-webkit-box-shadow: inset 0px 1px 1px 0px #3f3f3f,0px 2px 3px 0px #0d0d0d;
+	-moz-box-shadow: inset 0px 1px 1px 0px #3f3f3f,0px 2px 3px 0px #0d0d0d;
+	box-shadow: inset 0px 1px 1px 0px #3f3f3f,0px 2px 3px 0px #0d0d0d; 
+}
+
+/* Progress bar that shows the current position of the track */
+.fmp-time-bar .fmp-progress-bar {
+	height: 6px;
+	position: absolute;
+	background: #a9a9a9; /* Old browsers */
+	background: -moz-linear-gradient(top, #a9a9a9 0%, #8a8a8a 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a9a9a9), color-stop(100%,#8a8a8a)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #a9a9a9 0%,#8a8a8a 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #a9a9a9 0%,#8a8a8a 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #a9a9a9 0%,#8a8a8a 100%); /* IE10+ */
+	-webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-box-shadow: inset 0px 1px 1px 0px #a7a7a7;
+	-moz-box-shadow: inset 0px 1px 1px 0px #a7a7a7;
+	box-shadow: inset 0px 1px 1px 0px #a7a7a7; 
+}
+
+/* Time Slider to seek to another time range */
+.fmp-time-bar .fmp-time-slider {
+	width: 18px;
+	height: 18px;
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -106px -25px;
+	position: absolute;
+	top: -2px;
+	left: -6px;
+	cursor: pointer;
+}
+
+/* Sound control holds button and volume slider */
+.fmp-sound-control {
+	position: relative;
+	margin: 11px 0px 0px 10px;
+	float: left;
+	display: none;
+}
+
+/* Volume button */
+.fmp-sound-control .fmp-volume-button {
+	width: 18px;
+	height: 12px;
+	background: #323232 url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -16px -58px;
+	border: 1px solid #0d0d0d;
+	cursor: pointer;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+/* Volume bar */
+.fmp-sound-control .fmp-volume-bar {
+	display: none;
+	width: 13px;
+	height: 50px;
+	position: absolute;
+	background: #323232;
+	border: 1px solid #0d0d0d;
+	top: 19px;
+	left: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px; 
+}
+
+/* The arrow border of the volume bar */
+.fmp-volume-bar .fmp-volume-arrow-border {
+	border-color: transparent transparent #0d0d0d;
+    border-style: solid;
+    border-width: 4px;
+    top: -8px;
+    height: 0;
+    left: 3px;
+    position: absolute;
+    width: 0;	
+}
+
+/* The arrow of the volume bar */
+.fmp-volume-bar .fmp-volume-arrow {
+	border-color: transparent transparent #323232;
+    border-style: solid;
+    border-width: 2px;
+    top: -4px;
+    height: 0;
+    left: 5px;
+    position: absolute;
+    width: 0;	
+}
+
+/* Volume slider */
+.fmp-volume-bar .fmp-volume-slider {
+	width: 18px;
+	height: 12px;
+	position: absolute;
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -0px -60px;
+	top: 40px;
+	left: -2px;
+	cursor: pointer;
+}
+
+/* Volume state background */
+.fmp-volume-bar .fmp-volume-state-background {
+	background: #0d0d0d;
+	width: 7px;
+	height: 44px;
+	margin: 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-box-shadow: inset 0px 1px 1px 0px #000,0px 1px 1px 0px #2e2d2d;
+	-moz-box-shadow: inset 0px 1px 1px 0px #000,0px 1px 1px 0px #2e2d2d;
+	box-shadow: inset 0px 1px 1px 0px #000,0px 1px 1px 0px #2e2d2d;
+}
+
+/* Volume state */
+.fmp-volume-state-background .fmp-volume-state {
+	height: 100%;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px; 
+	background: #a9a9a9; /* Old browsers */
+	background: -moz-linear-gradient(top, #a9a9a9 0%, #8a8a8a 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a9a9a9), color-stop(100%,#8a8a8a)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #a9a9a9 0%,#8a8a8a 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #a9a9a9 0%,#8a8a8a 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, #a9a9a9 0%,#8a8a8a 100%); /* IE10+ */
+	-webkit-box-shadow: inset 0px 1px 1px 0px #c0c0c0;
+	-moz-box-shadow: inset 0px 1px 1px 0px #c0c0c0;
+	box-shadow: inset 0px 1px 1px 0px #c0c0c0;
+}
+
+.fmp-tracks-container {
+	margin: 8px 0px 0px 5px;
+	height: 100%;
+	width: 90%;
+	overflow-y: auto;
+}
+
+/* Playlist button that shows/hides the playlist */
+.fmp-tracks-container .fmp-playlist-button {
+	width: 16px;
+	height: 13px;
+	background: #323232 url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -54px 3px;
+	border: 1px solid #0d0d0d;
+	margin: 0px 10px 10px 0px;
+	cursor: pointer;
+	float: left;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;	
+}
+
+/* Normal status for the playlist icon */
+.fmp-button-normal {
+	-webkit-box-shadow: 0px 1px 3px 0px #000, inset 0px 1px 1px 0px #5f5f5f;
+	-moz-box-shadow: 0px 1px 3px 0px #000, inset 0px 1px 1px 0px #5f5f5f;
+	box-shadow: 0px 1px 3px 0px #000, inset 0px 1px 1px 0px #5f5f5f;
+}
+
+/* Activate status for the playlist icon */
+.fmp-button-active {
+	-webkit-box-shadow: inset 0px 1px 1px 0px #000, 0px 0px 0px 0px #313131;
+	-moz-box-shadow: inset 0px 1px 1px 0px #000, 0px 0px 0px 0px #313131;
+	box-shadow: inset 0px 1px 1px 0px #000, 0px 0px 0px 0px #313131; 
+}
+
+/* Current playing title */
+.fmp-tracks-container .fmp-current-title {
+	line-height: 15px;
+	padding: 0 5px 0 0;
+	color: #fff;
+	font-size: 11px;
+}
+
+/* Container for the playlist */
+.fmp-playlist-container {
+	width: 100%;
+	display: none;
+	margin: 20px 0 0 5px;
+}
+
+/* Container for the scrollable area */
+.fmp-playlist-scroll {
+	width: 95%;
+	
+	overflow: auto;
+	outline: none;
+}
+
+/* Playlist */
+.fmp-playlist {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	line-height: 24px !important;
+}
+
+.fmp-playlist li {
+	position: relative;
+	margin: 0px 10px 12px 0;
+	list-style-type: none !important;
+	list-style: none !important;
+	line-height: 16px !important;
+}
+
+.fmp-playlist li .fmp-delete-track {
+	position: absolute;
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat -12px 0px;
+	width: 8px;
+	height: 8px;
+	top: 3px;
+	left: 0;
+	cursor: pointer;
+}
+
+/* Titles in the playlist */
+.fmp-playlist li span {
+	display: inline-block;
+	width: 80%;
+	font-size: 11px;
+	cursor: pointer;
+	margin-left: 20px;
+	line-height: 13px !important;
+}
+
+.fmp-playlist li .fmp-track-link {
+	position: absolute;
+	background: url('/assets/fancymusicplayer/black/fmp_sprite.png') no-repeat 0px 0px;
+	width: 9px;
+	height: 9px;
+	top: 3px;
+	right: 5px;
+	cursor: pointer;
+}
+
+/* Custom playlists */
+
+div.fmp-xml-playlist h3 {
+	margin: 10px 0 5px;
+	color: #EEEEEE;
+	font-size: 14px;
+}
+
+ul.fmp-my-playlist {
+	padding: 0;
+	margin: 0;	
+}
+
+.fmp-my-playlist li a {
+	color: #737373;
+	font-size: 11px;
+}
+
+
+/*
+ * CSS Styles that are needed for the scrollbar.
+ *
+ */
+
+/* Track */
+.nicescroll-rails {
+	background: #383844 !important;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+/* Drag cursor */
+.nicescroll-rails div {
+	background: #A8A8B4 !important;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 1px 2px 0px #e1e1e;
+	box-shadow: 0px 1px 2px 0px #e1e1e; 
+}
+
+
+/* Helper */
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+.clear {clear: both;}
+
+/* IE styles */
+
+.ie8 .fmp-time-bar .fmp-time-arrow-border {
+	display: none;	
+}
+
+.ie8 .fmp-time-bar .fmp-time-arrow {
+	display: none;	
+}

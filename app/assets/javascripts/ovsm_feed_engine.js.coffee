@@ -69,6 +69,7 @@ jQuery ->
 					#Photo
 					@click_listeners()
 					#Audio
+					$(".music_player").fancyMusicPlayer()
 					#Stuff
 				)
 
