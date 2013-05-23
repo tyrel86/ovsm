@@ -5,6 +5,7 @@ Ovsm::Application.routes.draw do
 
 	#For now use a custom login controller switch back to devise latter
 	resources :sessions, only: [:create]
+	match "/sessions/logout" => "sessions#destroy", as: :sessions_destroy
 	devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 	devise_scope :user do
 		root to: "devise/registrations#new"

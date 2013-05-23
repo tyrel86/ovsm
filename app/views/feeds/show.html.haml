@@ -39,25 +39,25 @@
 		.people.active People
 		.businesses Businesses
 	.categories
-		.link.active#all
+		.link.active.post_type{ data: {type: "all"} }
 			.label All
 			.image= image_tag "icon-all.png"
-		.link#text
+		.link.post_type{ data: {type: "text"} }
 			.label Text
 			.image= image_tag "icon-text.png"
-		.link#photos
+		.link.post_type{ data: {type: "photos"} }
 			.label Photos
 			.image= image_tag "icon-photo.png"
-		.link#audio
+		.link.post_type{ data: {type: "audio"} }
 			.label Audio
 			.image= image_tag "icon-audio.png"
-		.link#links
+		.link.post_type{ data: {type: "links"} }
 			.label Links
 			.image= image_tag "icon-link.png"
-		.link#videos
+		.link.post_type{ data: {type: "video"} }
 			.label Videos
 			.image= image_tag "icon-movie.png"
-		= select_tag( :post_categories_select, options_for_select( ovsm_optionify( @post_categories ) ) )
+		= select_tag( :post_categories_select, options_for_select( ['All Categories'] + ovsm_optionify( @post_categories ) ) )
 
 .span-24
 	.ovsm_feed_engine(data-bind="template: { name: 'postTemplate', foreach: posts, as: 'post' }")

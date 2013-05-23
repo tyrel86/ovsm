@@ -17,9 +17,10 @@ jQuery ->
 			for key, value of @uri_params
 				uri += "&" unless key == "feed" or value == null
 				uri += "#{key}=#{value}" unless value == null
+			console.log uri
 			uri
 
-		click_listeners: ->
+		photo_album_click_listeners: ->
 			add_remove_buttons = (photo_album) ->
 				current = photo_album.find(".slide.active")
 				next = current.next(".slide")
@@ -67,7 +68,7 @@ jQuery ->
 						swf: "/assets/flash/flowplayer.swf"
 					)
 					#Photo
-					@click_listeners()
+					@photo_album_click_listeners()
 					#Audio
 					$(".music_player").fancyMusicPlayer()
 					#Stuff
@@ -144,4 +145,18 @@ jQuery ->
 
 	feed = new EndlessFeed
 	feed.get_json_data()
+	$(".post_type").click ->
+		$(".post_type.active").removeClass("active")
+		$(this).addClass("active")
+		content_type = $(this).data("type")
+		content_type = null if content_type == "all"
+		feed.uri_params.content_type = content_type
+		feed.get_json_data()
 
+	$("#post_categories_select").change ->
+		category_id = $(this).val()
+		if category_id == "All Categories"
+			feed.uri_params.category = null
+		else
+			feed.uri_params.category = category_id
+		feed.get_json_data()
