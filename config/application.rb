@@ -67,6 +67,9 @@ module Ovsm
 		config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 		config.assets.paths << Rails.root.join('app', 'assets', 'flash')
 
+		#Add non manifest files to assets compilation
+		config.assets.precompile += %w[leaflet.css]
+
 		# Precompile additional assets
 		config.assets.precompile += %w( .svg .eot .woff .ttf )
   end
