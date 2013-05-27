@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511222109) do
+ActiveRecord::Schema.define(:version => 20130527013049) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -67,6 +67,14 @@ ActiveRecord::Schema.define(:version => 20130511222109) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "active"
+  end
+
+  create_table "feed_videos", :force => true do |t|
+    t.integer  "feed_id"
+    t.string   "video"
+    t.boolean  "active"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "feeds", :force => true do |t|
@@ -171,6 +179,10 @@ ActiveRecord::Schema.define(:version => 20130511222109) do
     t.integer  "user_id"
     t.integer  "post_category_id"
     t.boolean  "promotional"
+    t.boolean  "has_video"
+    t.boolean  "has_audio"
+    t.boolean  "has_photos"
+    t.boolean  "has_links"
   end
 
   create_table "square_photos", :force => true do |t|
@@ -201,6 +213,7 @@ ActiveRecord::Schema.define(:version => 20130511222109) do
     t.string   "provider"
     t.string   "uid"
     t.string   "avatar"
+    t.string   "remember_me_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

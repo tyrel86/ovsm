@@ -6,6 +6,7 @@
 @import "partials/main_header";
 @import "tabular_form";
 @import "ovsm_feed_engine";
+@import "jplayer-blue-monday";
 
 body {
 	// @include background-image(linear-gradient(left, color-stops($dark_grey, $mid_grey 20%, $light_grey 50%, $mid_grey 80%, $dark_grey 100%)));
@@ -213,7 +214,7 @@ body {
 			position:relative;
 			.feed_banner {
 				border-bottom: 1px solid rgba(255,255,255,0.3);
-				width: 634px;
+				width: 633px;
 				height: 300px;
 				float: left;
 			}
@@ -233,7 +234,7 @@ body {
 			position: relative;
 			border-bottom: 1px solid rgba(255,255,255,0.3);
 			.left_col {
-				width: 168px;
+				width: 167px;
 				height: 100%;
 				float: left;
 				color: white;

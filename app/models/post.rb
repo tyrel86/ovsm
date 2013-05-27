@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
-  attr_accessible :content, :lat, :lng, :photo_ids, :audio_ids, :video_ids, :post_category_id
-	attr_accessor :lat, :lng, :photo_ids, :audio_ids, :video_ids
+  attr_accessible :content, :lat, :lng, :photo_ids, :audio_ids, :video_ids, :post_category_id,
+									:has_video, :has_audio, :has_photos, :has_links
+	attr_accessor :lat, :lng, :photo_ids, :audio_ids, :video_ids, :created_page_link_this_time
 	belongs_to :feed
 	belongs_to :user
 	has_one :photo_album, dependent: :destroy
@@ -10,13 +11,14 @@ class Post < ActiveRecord::Base
 	has_and_belongs_to_many :page_links
 
 	before_save :arayify_id_attrs, :initilize_dependancies, :consolidate_albums, :link_or_create_page_links_from_content,
-							:convert_line_brakes, :sanatize_html
+							:convert_line_brakes, :sanatize_html, :update_has_attrs
 
 	def link_or_create_page_links_from_content
 		URI.extract(content, ['http', 'https']).each do |url|
 			pl = PageLink.find_by_url( url )
 			pl ||= PageLink.create( url: url )
-			self.page_links << pl if pl.valid?
+			self.page_links << pl if pl.valid? and not self.page_links.include? pl
+			self.created_page_link_this_time = true
 		end
 	end
 
@@ -26,6 +28,14 @@ class Post < ActiveRecord::Base
 
 	def sanatize_html
 		self.content = Sanitize.clean(content, Sanitize::Config::RESTRICTED)
+	end
+
+	def update_has_attrs
+		self.has_video = (video_album.video_files.size > 0) ? true : false
+		self.has_audio = (audio_album.audio_files.size > 0) ? true : false
+		self.has_photos = (photo_album.square_photos.size > 0) ? true : false
+		self.has_links = (page_links.count > 0 or created_page_link_this_time) ? true : false
+		true
 	end
 
 	# Transform all id attrs from "1,2,3,4" to [1,2,3,4]
@@ -65,9 +75,9 @@ class Post < ActiveRecord::Base
 	end
 
 	scope :with_text, where{ content != "" }
-	scope :with_photos, joins{ photo_album.square_photos.inner }
-	scope :with_links, joins{ page_links.inner }
-	scope :with_audio, joins{ audio_album.audio_files.inner }
-	scope :with_video, joins{ video_album.video_files.inner }
+	scope :with_photos, where{ has_photos == true }
+	scope :with_links, where{ has_links == true }
+	scope :with_audio, where{ has_audio == true }
+	scope :with_video, where{ has_video == true }
 
 end

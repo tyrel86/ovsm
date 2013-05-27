@@ -20,16 +20,40 @@
 			background-color: black;
 		}
 		&.audio {
-			background-color: black;
+			background-color: $light_grey;
 			background-image: url('/assets/music_notes.png');
-			.clearfix {
+			.controll {
+				color: white;
+				font-size: 14px;
 				position: absolute;
-				bottom: 2px;
-				padding-left: 5px;
-				&.fmp-tracks-container {
-					top: -7px;
-					height: 80%;
+				top: 3px;
+				z-index: 99;
+				&:hover {
+					cursor: hand;
+					cursor: pointer;
 				}
+				&.next {
+					left: 190px;
+				}
+				&.prev {
+					left: 3px;
+				}
+			}
+			.sm2-360ui {
+				position: absolute;
+				top: 24px;
+				left: 42px;
+			}
+			.sm2_link {
+				position: absolute !important;
+				top: 201px !important;
+				width: 224px !important;
+				left: 2px !important;
+				border-top: 2px solid black !important;
+				text-align: center;
+				background-color: white;
+				height: 24px !important;
+				color: black !important;
 			}
 		}
 		&.photo {
@@ -99,6 +123,29 @@
 			font-size: 16px;
 			padding: 5px;
 			color: white;
+		}
+		&.links {
+			@include background-image(linear-gradient(color-stops($light_grey, $dark_grey)));
+			font-size: 16px;
+			padding: 5px;
+			color: white;
+			text-align: center;
+			a {
+				color: white;
+				text-decoration: none;
+				h5 {
+					color: white;
+					font-weight: bold;
+					margin: 0px;
+				}
+				img {
+					width: 100px;
+					margin: 10px;
+				}
+				p {
+					font-size: 12px;
+				}
+			}
 		}
 		.flowplayer {
 			width: 100%;

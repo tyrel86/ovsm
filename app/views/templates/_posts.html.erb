@@ -5,6 +5,18 @@
 				<p data-bind="text: exerpt"></p>
 			<!-- /ko -->
 
+			<!-- ko if: thumb_style == 'links'  -->
+				<div class="links_container" data-bind="foreach: links">
+					<a data-bind="attr: {href: url, target: '_blank'}">
+						<div class="link_container" data-bind="visible: $index() == 0">
+							<h5 data-bind="text: title"></h5>
+							<img data-bind="attr: {src: image_url}"></img>
+							<p data-bind="text: exerpt"></p>
+						</div>
+					</a>
+				</div>
+			<!-- /ko -->
+
 			<!-- ko if: thumb_style == 'video' -->
 				<div class="flowplayer">
 					<video data-bind="with: videos[0]">
@@ -29,17 +41,54 @@
 						<div class="previous controll"><div class="inner"></div></div>
 					<!-- /ko -->
 					<div data-bind="attr: { class: ($index() == 0) ? 'active slide' : 'slide'}">
-						<img data-bind="attr: {src: photo.thumb.url}">
+						<img data-bind="attr: {src: photo.thumb.url}"></img>
 						<p class="caption" data-bind="text: caption"></p>
 					</div>
 				</div>
 			<!-- /ko -->
 
 			<!-- ko if: thumb_style == 'audio' -->
-				<div class="music_player" data-bind="foreach: audio">
-					<a data-bind="attr: {href: file.url, title: name}"></a>
+				<div class="jp-jplayer" data-bind="attr: {id: 'jquery_jplayer_' + id}"></div>
+				<div class="jp-audio thumb" data-bind="attr: {id: 'jp_container_' + id, 'data-postid': id}">
+					<div class="jp-type-playlist">
+						<div class="jp-gui jp-interface thumb">
+							<ul class="jp-controls thumb">
+								<li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
+								<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+								<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+								<li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
+								<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+								<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+								<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+								<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+							</ul>
+							<div class="jp-progress thumb">
+								<div class="jp-seek-bar">
+									<div class="jp-play-bar"></div>
+								</div>
+							</div>
+							<div class="jp-volume-bar thumb">
+								<div class="jp-volume-bar-value"></div>
+							</div>
+							<div class="jp-time-holder">
+								<div class="jp-current-time"></div>
+								<div class="jp-duration"></div>
+							</div>
+						</div>
+						<div class="jp-playlist">
+							<ul>
+								<li></li>
+							</ul>
+						</div>
+						<div class="jp-no-solution">
+							<span>Update Required</span>
+							To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+						</div>
+					</div>
 				</div>
+				<audio_album data-bind="attr: {id: 'album' + id}, foreach: audio">
+					<audio_file data-bind="attr: {'data-name': name, 'data-url': file.url}"></audio_file>
+				</audio_album>
 			<!-- /ko -->
-
     </div>
 </script>

@@ -7,14 +7,21 @@ class PageLink < ActiveRecord::Base
 
 	def fetch_data
 		begin
-			object = LinkThumbnailer.generate( url )
-			self.title = object.title
-			self.description = object.description
-			self.image_url = object.images.first.source_url.to_s
+			unless title and description and image_url
+				object = LinkThumbnailer.generate( url )
+				self.title = object.title
+				self.description = object.description
+				self.image_url = object.images.first.source_url.to_s
+			end
+			true
 		rescue
 			self.errors[:url] << "Could not connect with #{url}"
-			return false
+			false
 		end
+	end
+
+	def exerpt
+		HTML_Truncator.truncate(description, 20)
 	end
 
 end

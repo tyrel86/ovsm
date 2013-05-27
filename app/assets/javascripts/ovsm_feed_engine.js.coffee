@@ -70,8 +70,16 @@ jQuery ->
 					#Photo
 					@photo_album_click_listeners()
 					#Audio
-					$(".music_player").fancyMusicPlayer()
-					#Stuff
+					$(".jp-audio").each( (i,e) ->
+						db_post_id = $(e).data('postid')
+						console.log db_post_id
+						play_list = OvsmLib.play_list_from_html5_album( db_post_id )
+						console.log play_list
+						new jPlayerPlaylist({
+							jPlayer: "#jquery_jplayer_#{db_post_id}",
+							cssSelectorAncestor: "#jp_container_#{db_post_id}"
+						}, play_list)
+					)
 				)
 
 		post_view_model: (post) ->
@@ -84,11 +92,19 @@ jQuery ->
 				content_types.has_video = ((post.video_album.video_files[0] != undefined) ? true : false)
 				@content_types = content_types
 			@discover_thumb_style = (ct) ->
-				return "video" if ct.has_video
-				return "audio" if ct.has_audio
-				return "photo" if ct.has_photos
-				return "text" if ct.has_text
-				return "links" if ct.has_links
+				if @uri_params.content_type == null
+					return "video" if ct.has_video
+					return "audio" if ct.has_audio
+					return "photo" if ct.has_photos
+					return "text" if ct.has_text
+					return "links" if ct.has_links
+				else
+					type = @uri_params.content_type
+					return "video" if type == "video"
+					return "audio" if type == "audio"
+					return "photo" if type == "photos"
+					return "text" if type == "text"
+					return "links" if type == "links"
 			@discover_file_type = (file) ->
 				parts = file.file.url.split(".")
 				ext = parts[ parts.length - 1 ]

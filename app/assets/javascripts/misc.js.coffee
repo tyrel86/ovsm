@@ -8,14 +8,6 @@ jQuery ->
 		mpg: "video/mp4"
 		mp4: "video/mp4"
 		ogv: "video/ogg"
-		#Audio
-		mp3: "audio/mp3"
-
-	#Initilize Sound Manager
-	soundManager.url = '/assets/soundmanager2_flash9.swf'
-	soundManager.flashVersion = 9
-	soundManager.useHTML5Audio = true
-	soundManager.debugMode = false
 
 	#Set nav bar active link to parrent
 	$("a.active").first().parent().addClass("active")
@@ -23,3 +15,11 @@ jQuery ->
 	#Signup form click listener
 	$(".sign_up_button").unbind('click').click ->
 		$(".sign_up_form").slideToggle("slow")
+
+	#Set up video show modal for feeds
+	$(document).on( $.modal.AJAX_COMPLETE, ->
+		feed_video = $(".feed_video_holder").first()
+		if feed_video.size() > 0
+			feed_video.parent().addClass("feed_video_modal")
+			feed_video.flowplayer()
+	)

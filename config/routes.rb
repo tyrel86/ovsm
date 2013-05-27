@@ -1,6 +1,4 @@
 Ovsm::Application.routes.draw do
-  resources :page_links
-
   use_link_thumbnailer
 
 	#For now use a custom login controller switch back to devise latter
@@ -15,7 +13,9 @@ Ovsm::Application.routes.draw do
 
 	get "/feeds" => "feeds#index", as: :user_root
 	post "/feeds/fly_and_show" => "feeds#fly_and_show", as: :fly_and_show
-  resources :feeds
+  resources :feeds do
+		resources :feed_videos, only: [:show]
+	end
 
 	resources :posts
 	resources :square_photos

@@ -1,5 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :content, :exerpt, :created_at, :updated_at
+  attributes :content, :exerpt, :created_at, :updated_at, :id
 
 	has_one :user
 	has_one :photo_album

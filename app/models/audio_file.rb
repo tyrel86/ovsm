@@ -7,7 +7,8 @@ class AudioFile < ActiveRecord::Base
 	before_save :default_name
 
 	def default_name
-    self.name ||= File.basename(file.filename, '.*').titleize if file
+		self.name = nil if name.empty?
+    self.name ||= file.to_s.split("/").last.split(".").first
   end
 
 end

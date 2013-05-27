@@ -4,8 +4,9 @@ class SessionsController < ApplicationController
 		if user
 			env['warden'].set_user(user)
 			if params[:user][:remember_me]
-				cookies[:remember_me] = remember_string
-				user.remember_me = cookies[:remember_me] 
+				cookies[:remember_me] = { :value => remember_string, :expires => 3.months.from_now }
+				user.remember_me_token = cookies[:remember_me] 
+				user.save
 			end
 		end
 		redirect_to feeds_path

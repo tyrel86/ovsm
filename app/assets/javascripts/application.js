@@ -11,23 +11,27 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require_self
+//  Jquery and Adons
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.modal
-//= require knockout-2.2.1
-//= require misc
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
+//  Third Pary Libraries
 //= require object_watch
+//= require flowplayer.min
+//= require jquery.jplayer.min
+//= require jplayer.playlist.min
+//= require knockout-2.2.1
 //= require jqClock.min
-//= require digital_clock
 //= require geoip2
+//  Custom Libraries/Implementation Code
+//= require misc
+//= require jplayer_helper
+//= require digital_clock
 //= require user_location
 //= require tab_form
 //= require ovsm_feed_engine
-//= require flowplayer.min
-//= require soundmanager2.min.js
-//= require jquery.fancyMusicPlayer.min.js
-//= require jquery-fileupload/basic
-//= require jquery-fileupload/vendor/tmpl
 
 var OvsmLib = {}
