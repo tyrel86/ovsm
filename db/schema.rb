@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527013049) do
+ActiveRecord::Schema.define(:version => 20130612200422) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -54,11 +54,11 @@ ActiveRecord::Schema.define(:version => 20130527013049) do
   end
 
   create_table "audio_files", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-    t.string   "file"
     t.integer  "audio_album_id"
+    t.hstore   "aws_urls"
+    t.string   "name"
   end
 
   create_table "feed_banners", :force => true do |t|
@@ -150,6 +150,15 @@ ActiveRecord::Schema.define(:version => 20130527013049) do
     t.integer "post_id"
   end
 
+  create_table "panda_uploads", :force => true do |t|
+    t.boolean  "ready"
+    t.string   "panda_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "post_id"
+    t.string   "media_type"
+  end
+
   create_table "photo_albums", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -183,6 +192,8 @@ ActiveRecord::Schema.define(:version => 20130527013049) do
     t.boolean  "has_audio"
     t.boolean  "has_photos"
     t.boolean  "has_links"
+    t.hstore   "panda_meta"
+    t.boolean  "ready"
   end
 
   create_table "square_photos", :force => true do |t|
@@ -191,6 +202,7 @@ ActiveRecord::Schema.define(:version => 20130527013049) do
     t.datetime "updated_at",     :null => false
     t.string   "photo"
     t.integer  "photo_album_id"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -214,6 +226,7 @@ ActiveRecord::Schema.define(:version => 20130527013049) do
     t.string   "uid"
     t.string   "avatar"
     t.string   "remember_me_token"
+    t.integer  "feed_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -227,11 +240,10 @@ ActiveRecord::Schema.define(:version => 20130527013049) do
   end
 
   create_table "video_files", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-    t.string   "file"
     t.integer  "video_album_id"
+    t.hstore   "aws_urls"
   end
 
 end

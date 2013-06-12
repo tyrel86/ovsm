@@ -67,18 +67,30 @@ jQuery ->
 					$(".flowplayer").flowplayer(
 						swf: "/assets/flash/flowplayer.swf"
 					)
+					$(".flowplayer-playlist").each( (i,e) ->
+						db_post_id = $(e).data('postid')
+						play_list = OvsmLib.video_play_list_from_html5_album( db_post_id )
+						$(e).flowplayer({
+							 rtmp: "rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st",
+							 playlist: play_list
+						})
+					)
 					#Photo
 					@photo_album_click_listeners()
 					#Audio
 					$(".jp-audio").each( (i,e) ->
 						db_post_id = $(e).data('postid')
-						console.log db_post_id
 						play_list = OvsmLib.play_list_from_html5_album( db_post_id )
-						console.log play_list
 						new jPlayerPlaylist({
 							jPlayer: "#jquery_jplayer_#{db_post_id}",
 							cssSelectorAncestor: "#jp_container_#{db_post_id}"
-						}, play_list)
+						}, play_list, {
+							swfPath: "/assets",
+							supplied: "oga, mp3",
+							wmode: "window",
+							smoothPlayBar: true,
+							keyEnabled: true
+						})
 					)
 				)
 
@@ -88,7 +100,7 @@ jQuery ->
 				content_types.has_text = ((post.content != "") ? true : false)
 				content_types.has_photos = ((post.photo_album.square_photos[0] != undefined) ? true : false)
 				content_types.has_audio = ((post.audio_album.audio_files[0] != undefined) ? true : false)
-				content_types.hs_links = ((post.page_links[0] != undefined) ? true : false)
+				content_types.has_links = ((post.page_links[0] != undefined) ? true : false)
 				content_types.has_video = ((post.video_album.video_files[0] != undefined) ? true : false)
 				@content_types = content_types
 			@discover_thumb_style = (ct) ->
@@ -96,15 +108,15 @@ jQuery ->
 					return "video" if ct.has_video
 					return "audio" if ct.has_audio
 					return "photo" if ct.has_photos
-					return "text" if ct.has_text
 					return "links" if ct.has_links
+					return "text" if ct.has_text
 				else
 					type = @uri_params.content_type
 					return "video" if type == "video"
 					return "audio" if type == "audio"
 					return "photo" if type == "photos"
-					return "text" if type == "text"
 					return "links" if type == "links"
+					return "text" if type == "text"
 			@discover_file_type = (file) ->
 				parts = file.file.url.split(".")
 				ext = parts[ parts.length - 1 ]
@@ -112,7 +124,6 @@ jQuery ->
 			@videos = (post) ->
 				video_files = []
 				for video_file in post.video_album.video_files
-					video_file.ext = @discover_file_type( video_file )
 					video_files.push video_file
 				video_files
 			@photos = (post) ->
@@ -123,7 +134,6 @@ jQuery ->
 			@audio = (post) ->
 				audio_files = []
 				for audio_file in post.audio_album.audio_files
-					audio_file.ext = @discover_file_type( audio_file )
 					audio_files.push audio_file
 				audio_files
 			{

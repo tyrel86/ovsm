@@ -25,10 +25,10 @@
 //= require jplayer.playlist.min
 //= require knockout-2.2.1
 //= require jqClock.min
-//= require geoip2
 //  Custom Libraries/Implementation Code
 //= require misc
 //= require jplayer_helper
+//= require flow_player_helper
 //= require digital_clock
 //= require user_location
 //= require tab_form

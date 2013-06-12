@@ -1,10 +1,5 @@
 .modal_form
 	= simple_form_for AudioFile.new do |f|
-		= f.input :name, label: "Give it a name"
-		= f.input :file, label: false
-		#upload_audio.init_upload Upload Audio File
-
-	%br
-	%hr#audio_upload_progress_devider.progress_devider
-	#audio_upload_progress_container
-	= render partial: "shared/progress_bars", locals: {handle: :audio}
+		#audio_upload Choose Audio File
+		.progress
+			%span#audio_progress_bar.bar

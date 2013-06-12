@@ -11,6 +11,7 @@ class Feed < ActiveRecord::Base
 
 	has_many :feed_banners
 	has_many :feed_videos
+	has_many :users
 	before_save :update_slug
 	before_create :initilize_dependancies, :update_time_zone
 	has_one :forecast
@@ -46,5 +47,12 @@ class Feed < ActiveRecord::Base
 		Time.strptime(current_time.strftime("%I:%M:%S"),"%I:%M:%S").to_i
 	end
 
+	def has_video?
+		feed_videos.count > 0
+	end
+
+	def number_of_users
+		users.count
+	end
 
 end

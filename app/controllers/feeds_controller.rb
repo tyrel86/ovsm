@@ -1,5 +1,5 @@
 class FeedsController < ApplicationController
-	before_filter :require_user
+	before_filter :authenticate_user!
 
 	def index
 		respond_to do |format|

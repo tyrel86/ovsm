@@ -45,6 +45,8 @@
 							%tr
 								%td Birthday
 								%td= f.input_field :birthday, :required => true, :autofocus => true, label: false
+							= f.input :lat, as: :hidden
+							= f.input :lng, as: :hidden
 						.terms
 							= check_box_tag :terms
 							%p I accept the terms and conditions stated here

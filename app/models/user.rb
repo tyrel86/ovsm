@@ -11,16 +11,29 @@ class User < ActiveRecord::Base
 	attr_protected :id, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :sign_in_count,
 								 :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :created_at, :updated_at
 
-	attr_accessor :login
+	attr_accessor :login, :lat, :lng
 
 	mount_uploader :avatar, AvatarUploader
 	belongs_to :interest
+	belongs_to :feed
 	has_many :posts
 	has_many :landscape_photos
 	has_many :portrait_photos
 	has_many :square_photos
 	has_many :video_files
 	has_many :audio_files
+
+	before_create :set_home_town
+
+	def set_home_town
+		latlng = [lat, lng]
+		unless latlng.first.nil? or latlng.last.nil?
+			self.feed = Feed.closest( origin: latlng ).first
+		else
+			#Default to user profile home town for now denver soon based on user settings
+			self.feed = Feed.find_by_name( "Denver, CO" )
+		end
+	end
 
 	class << self
 		def authenticate(login, password)

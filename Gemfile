@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 #Core libraries/ORMS/DSLS
 gem 'rails', '3.2.13'
 gem 'pg'
+gem 'activerecord-postgres-hstore'
 gem 'squeel'
 
 #Asset pipeline
@@ -33,14 +34,21 @@ gem 'activeadmin'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'simple_form'
 gem 'rmagick'
+
+#File uploading libraries
 gem 'carrierwave'
-gem 'fog'
+gem 'fog', "~> 1.3.1"
+
+#Third party service helper libraries
+gem 'zencoder'
+gem 'panda'
+
 gem 'geokit-rails3'
 
 #Language time and location libraries
 gem 'timezone'
 
-#User authintication not devise is required by active admin
+#User authintication note devise is required by active admin
 gem 'omniauth'
 gem 'omniauth-facebook', require: "omniauth-facebook"
 
@@ -52,6 +60,7 @@ gem 'active_link_to'
 gem 'link_thumbnailer'
 gem 'sanitize'
 gem 'html_truncator'
+
 
 #Cient scripting libraries
 gem 'jquery-rails'

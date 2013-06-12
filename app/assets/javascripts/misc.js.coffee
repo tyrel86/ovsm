@@ -15,6 +15,8 @@ jQuery ->
 	#Signup form click listener
 	$(".sign_up_button").unbind('click').click ->
 		$(".sign_up_form").slideToggle("slow")
+		$("#user_lat").val(OvsmLib.user_location_lat)
+		$("#user_lng").val(OvsmLib.user_location_lng)
 
 	#Set up video show modal for feeds
 	$(document).on( $.modal.AJAX_COMPLETE, ->

@@ -1,10 +1,5 @@
 .modal_form
 	= simple_form_for VideoFile.new do |f|
-		= f.input :name, label: "Give it a name"
-		= f.input :file, label: false
-		#upload_video.init_upload Upload Video File
-
-	%br
-	%hr#video_upload_progress_devider.progress_devider
-	#video_upload_progress_container
-	= render partial: "shared/progress_bars", locals: {handle: :video}
+		#video_upload Choose Video
+		.progress
+			%span#video_progress_bar.bar

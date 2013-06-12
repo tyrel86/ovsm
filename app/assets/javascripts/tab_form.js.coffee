@@ -38,6 +38,46 @@ jQuery ->
 		)
 
 		# Set up ajax file uploaders
+		panda.uploader.init(
+			'buttonId': 'video_upload'
+			'progressBarId': 'video_progress_bar'
+			'onStart': ->
+				OvsmLib.upload_cue += 1
+			'onSuccess': (file, data) ->
+				old_val = $("#post_video_ids").val()
+				if old_val == undefined or old_val == ""
+					delimiter = ""
+				else
+					delimiter = ","
+				new_val = old_val + delimiter + data.id
+				$("#post_video_ids").val( new_val )
+
+			'onComplete': ->
+				$("#video_progress_bar").css('width', '0%')
+				OvsmLib.upload_cue -= 1
+		)
+
+		panda.uploader.init(
+			'authorizeUrl': '/panda/authorize_upload_audio'
+			'buttonId': 'audio_upload'
+			'progressBarId': 'audio_progress_bar'
+			'onStart': ->
+				OvsmLib.upload_cue += 1
+			'onSuccess': (file, data) ->
+				old_val = $("#post_audio_ids").val()
+				if old_val == undefined or old_val == ""
+					delimiter = ""
+				else
+					delimiter = ","
+				new_val = old_val + delimiter + data.id
+				$("#post_audio_ids").val( new_val )
+				console.log data
+
+			'onComplete': (file,data) ->
+				$("#audio_progress_bar").css('width', '0%')
+				OvsmLib.upload_cue -= 1
+		)
+
 		$("#new_square_photo").fileupload
 			dataType: "script"
 			replaceFileInput: false
@@ -58,42 +98,5 @@ jQuery ->
 			start: (e, data) ->
 				$("#upload_photo").unbind('click')
 
-		$("#new_audio_file").fileupload
-			dataType: "script"
-			replaceFileInput: false
-			add: (e, data) ->
-				$("#upload_audio").on('click', ->
-					OvsmLib.upload_cue += 1
-					data.context = $($.parseHTML(tmpl("audio_upload_progress_bars", data.files[0])))
-					$("#audio_upload_progress_container").append(data.context)
-					data.submit()
-					$("#audio_file_name").val("")
-					$("#audio_upload_progress_devider").show()
-				)
-			progress: (e, data) ->
-				if data.context
-					progress = parseInt(data.loaded / data.total * 100, 10)
-					data.context.find('.bar').css('width', progress + '%')
-			start: (e, data) ->
-				$("#upload_audio").unbind('click')
-
-		$("#new_video_file").fileupload
-			dataType: "script"
-			replaceFileInput: false
-			add: (e, data) ->
-				$("#upload_video").on('click', ->
-					OvsmLib.upload_cue += 1
-					data.context = $($.parseHTML(tmpl("video_upload_progress_bars", data.files[0])))
-					$("#video_upload_progress_container").append(data.context)
-					data.submit()
-					$("#video_file_name").val("")
-					$("#video_upload_progress_devider").show()
-				)
-			progress: (e, data) ->
-				if data.context
-					progress = parseInt(data.loaded / data.total * 100, 10)
-					data.context.find('.bar').css('width', progress + '%')
-			start: (e, data) ->
-				$("#upload_video").unbind('click')
 
 	)

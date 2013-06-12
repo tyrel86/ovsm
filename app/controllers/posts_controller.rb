@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+	before_filter :authenticate_user!
+
 	def index
-		@posts = Post.where( feed_id: params[:feed] ).where( promotional: params[:promotional] ).order("created_at desc")
+		@posts = Post.where( feed_id: params[:feed] ).where( promotional: params[:promotional] ).where( ready: true ).order("created_at desc")
 		@posts = @posts.where( post_category_id: params[:category] ) if params[:category]
 		@posts = @posts.send( "with_#{params[:content_type]}" ) if params[:content_type]
 		Time.parse(params[:last_post_time]) if params[:last_post_time]

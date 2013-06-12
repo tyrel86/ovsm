@@ -13,12 +13,13 @@
 				.low= "#{today[:low]}&deg;".html_safe
 				.digital_clock
 			.section
-				.users= "Users: 30,000"
+				.users= "Users: #{@feed.number_of_users}"
 			.section.push_down
-				= link_to_modal feed_feed_video_path( @feed, 1 ) do
-					.video_button
-						.video= image_tag "video.png"
-						.video_text City Vid
+				- if @feed.has_video?
+					= link_to_modal feed_feed_video_path( @feed, 1 ) do
+						.video_button
+							.video= image_tag "video.png"
+							.video_text City Vid
 			
 		.right_col
 			%table

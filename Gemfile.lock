@@ -22,7 +22,8 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    active_link_to (1.0.0)
+    active_link_to (1.0.1)
+      actionpack
     active_model_serializers (0.8.1)
       activemodel (>= 3.0)
     activeadmin (0.6.0)
@@ -45,6 +46,10 @@ GEM
       activesupport (= 3.2.13)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-postgres-hstore (0.7.6)
+      activerecord (>= 3.1)
+      pg-hstore (>= 1.1.5)
+      rake
     activeresource (3.2.13)
       activemodel (= 3.2.13)
       activesupport (= 3.2.13)
@@ -55,7 +60,7 @@ GEM
       activesupport (>= 3.0.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    better_errors (0.8.0)
+    better_errors (0.9.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.1)
@@ -91,12 +96,12 @@ GEM
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
     debug_inspector (0.0.2)
-    debugger (1.5.0)
+    debugger (1.6.0)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.1)
     debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.0)
+    debugger-ruby_core_source (1.2.2)
     devise (2.2.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -104,7 +109,7 @@ GEM
       warden (~> 1.2.1)
     diff-lcs (1.2.4)
     erubis (2.7.0)
-    excon (0.21.0)
+    excon (0.13.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -114,13 +119,13 @@ GEM
     faraday (0.8.7)
       multipart-post (~> 1.1)
     fastercsv (1.5.5)
-    fog (1.11.1)
+    fog (1.3.1)
       builder
-      excon (~> 0.20)
+      excon (~> 0.13.0)
       formatador (~> 0.2.0)
-      json (~> 1.7)
       mime-types
-      net-scp (~> 1.1)
+      multi_json (~> 1.0)
+      net-scp (~> 1.0.4)
       net-ssh (>= 2.1.3)
       nokogiri (~> 1.5.0)
       ruby-hmac
@@ -133,7 +138,7 @@ GEM
     geokit-rails3 (0.1.5)
       geokit (~> 1.5)
       rails (~> 3.0)
-    haml (4.0.2)
+    haml (4.0.3)
       tilt
     haml-rails (0.4)
       actionpack (>= 3.1, < 4.1)
@@ -142,7 +147,7 @@ GEM
       railties (>= 3.1, < 4.1)
     has_scope (0.5.1)
     hashie (1.2.0)
-    highline (1.6.18)
+    highline (1.6.19)
     hike (1.2.2)
     html_truncator (0.3.0)
       nokogiri (~> 1.4)
@@ -151,7 +156,7 @@ GEM
     inherited_resources (1.4.0)
       has_scope (~> 0.5.0)
       responders (~> 0.9)
-    jbuilder (1.4.0)
+    jbuilder (1.4.1)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     journey (1.0.4)
@@ -160,10 +165,10 @@ GEM
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
       uuidtools
-    jquery-rails (2.2.1)
+    jquery-rails (3.0.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.0.2)
+    jquery-ui-rails (4.0.3)
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.7)
@@ -173,17 +178,16 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.8.0)
-    link_thumbnailer (1.0.7)
+    link_thumbnailer (1.0.8)
       hashie (~> 1.2.0)
       json (~> 1.7.6)
       net-http-persistent (~> 2.7)
       nokogiri (~> 1.5.5)
       rmagick (~> 2.13.1)
-    mail (2.5.3)
-      i18n (>= 0.4.0)
+    mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    meta_request (0.2.5)
+    meta_request (0.2.6)
       callsite
       rack-contrib
       railties
@@ -193,11 +197,11 @@ GEM
       activesupport (~> 3.1)
       polyamorous (~> 0.5.0)
     mime-types (1.23)
-    multi_json (1.7.3)
+    multi_json (1.7.4)
     multipart-post (1.2.0)
     net-http-persistent (2.8)
-    net-scp (1.1.0)
-      net-ssh (>= 2.6.5)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.7)
@@ -219,7 +223,12 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
+    panda (1.6.0)
+      faraday (>= 0.7.0)
+      multi_json (>= 1.3.2)
+      ruby-hmac (>= 0.3.2)
     pg (0.15.1)
+    pg-hstore (1.1.7)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -258,7 +267,7 @@ GEM
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.13.1)
-    rspec-rails (2.13.1)
+    rspec-rails (2.13.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -292,7 +301,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
-    uglifier (2.1.0)
+    uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     unicorn (4.6.2)
@@ -302,6 +311,8 @@ GEM
     uuidtools (2.1.4)
     warden (1.2.1)
       rack (>= 1.0)
+    zencoder (2.4.4)
+      multi_json
 
 PLATFORMS
   ruby
@@ -310,6 +321,7 @@ DEPENDENCIES
   active_link_to
   active_model_serializers
   activeadmin
+  activerecord-postgres-hstore
   bcrypt-ruby (~> 3.0.0)
   better_errors
   binding_of_caller
@@ -320,7 +332,7 @@ DEPENDENCIES
   debugger
   factory_girl
   faker
-  fog
+  fog (~> 1.3.1)
   geokit-rails3
   haml-rails
   html_truncator
@@ -333,6 +345,7 @@ DEPENDENCIES
   meta_request
   omniauth
   omniauth-facebook
+  panda
   pg
   rails (= 3.2.13)
   rmagick
@@ -344,3 +357,4 @@ DEPENDENCIES
   timezone
   uglifier (>= 1.0.3)
   unicorn
+  zencoder

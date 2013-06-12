@@ -72,5 +72,9 @@ module Ovsm
 
 		# Precompile additional assets
 		config.assets.precompile += %w( .svg .eot .woff .ttf )
+
+		#Action Mailer
+		config.action_mailer.default_url_options = { host: 'overseame.com' }
+
   end
 end

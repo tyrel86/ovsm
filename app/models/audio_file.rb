@@ -1,14 +1,29 @@
 class AudioFile < ActiveRecord::Base
+	serialize :aws_urls, ActiveRecord::Coders::Hstore
 
-  attr_accessible :name, :file
-	mount_uploader :file, AudioFileUploader
+  attr_accessible :aws_urls, :panda_id, :name
+	attr_accessor :panda_id
 	belongs_to :audio_album
 
-	before_save :default_name
 
-	def default_name
-		self.name = nil if name.empty?
-    self.name ||= file.to_s.split("/").last.split(".").first
-  end
+	before_create :get_aws_urls_from_panda
+
+	def get_aws_urls_from_panda
+		return false unless panda_id
+		panda = Panda::Video.find( panda_id )
+		encodings = panda.encodings
+		self.name = panda.original_filename.split(".").first
+			["oga", "mp3"].each do |encoding|
+				self.aws_urls[encoding.to_sym] = encodings[encoding].url
+			end
+	end
+
+	def mp3_url
+		aws_urls["mp3"]
+	end
+
+	def oga_url
+		aws_urls["oga"]
+	end
 
 end
