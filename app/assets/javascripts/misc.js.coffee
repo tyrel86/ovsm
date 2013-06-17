@@ -25,3 +25,4 @@ jQuery ->
 			feed_video.parent().addClass("feed_video_modal")
 			feed_video.flowplayer()
 	)
+

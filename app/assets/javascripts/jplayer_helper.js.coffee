@@ -9,3 +9,14 @@ OvsmLib.play_list_from_html5_album = ( db_post_id ) ->
 		play_list.push( play_list_entry )
 	)
 	play_list
+
+OvsmLib.play_list_from_modal_album = ->
+	play_list = []
+	$(".right audio_file").each( (i,e) ->
+		play_list_entry =
+			title: $(e).data('name')
+			mp3: $(e).data('mp3-url')
+			oga: $(e).data('ogg-url')
+		play_list.push( play_list_entry )
+	)
+	play_list

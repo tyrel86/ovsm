@@ -1,3 +1,55 @@
+.post-show.modal {
+	width: 950px;
+	position: fixed;
+	max-height: 350px;
+	overflow-y: auto;
+	.post-show-container {
+		text-align: left;
+		position: relative;
+		.left {
+			width: 25%;
+			min-height: 10px;
+			float: left;
+			.link {
+				display: block;
+				clear: both;
+				.title {
+					font-size: 20px;
+					float: left;
+					width: 100px;
+					margin-left: 10px;
+					&:hover {
+						cursor: hand;
+						cursor: pointer;
+					}
+					&.active {
+						border-bottom: 2px solid black;
+					}
+				}
+				.icon {
+					float: left;
+					min-width: 42px;
+				}
+			}
+		}
+		.right {
+			width: 75%;
+			float: left;
+			.media {
+				display: none;
+				&.active {
+					display: block;
+				}
+			}
+			.text {
+				border: 3px solid $light_grey;
+				padding: 3px;
+				max-height: 250px;
+				overflow-y: auto;
+			}
+		}
+	}
+}
 .ovsm_feed_engine {
 	$container_width: 950px;
 	$post_margin: 10px;
@@ -9,7 +61,7 @@
 		float: left;
 		word-wrap: break-word;
 		width: $thumb_hight_width;
-		height: $thumb_hight_width;
+		height: 300px;
 		margin-right: $post_margin;
 		margin-bottom: $post_margin;
 		@include box-sizing(border-box);
@@ -56,11 +108,15 @@
 				height: 24px !important;
 				color: black !important;
 			}
+			.jp-gui.jp-interface.thumb {
+				bottom: 69px;
+			}
 		}
 		&.photo {
 			.photo_album {
 				.controll {
 					display: none;
+					z-index: 99;
 					&:hover {
 						cursor: hand;
 						cursor: pointer;
@@ -148,9 +204,40 @@
 				}
 			}
 		}
+		.post_thumb_footer {
+			position: absolute;
+			bottom: 0px;
+			height: 70px;
+			width: 228px;
+			background-color: #A0A0A0;
+			left: 0px;
+			text-align: left;
+			&:hover {
+				$expand_post_cursor: '/assets/magnifier.png';
+				cursor: url($expand_post_cursor),url($expand_post_cursor),default;
+			}
+			img.avatar {
+				width: 50px;
+				position: absolute;
+				top: 10px;
+				left: 5px;
+				border: 1px solid white;
+				margin: 0px;
+			}
+			p.user_name {
+				position: absolute;
+				top: 19px;
+				left: 55px;
+				font-weight: bold;
+				font-size: 22px;
+				text-align: center;
+				width: 118px;
+				color: white;
+			}
+		}
 		.flowplayer {
 			width: 100%;
-			height: 100%;
+			height: 77%;
 			z-index: 0;
 			.fp-prev {
 				z-index: 99;

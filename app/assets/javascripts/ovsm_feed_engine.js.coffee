@@ -5,7 +5,7 @@ jQuery ->
 			@requests = 0
 			@uri
 			@uri_params =
-				feed: 1
+				feed: null
 				promotional: false
 				category: null
 				content_type: null
@@ -148,6 +148,7 @@ jQuery ->
 				audio: @audio(post)
 				links: post.page_links
 				id: post.id
+				user: post.user
 			}
 
 		new_post_view_model_array_from_json: ->
@@ -165,12 +166,23 @@ jQuery ->
 				$(element).addClass("last") if (index + 1) % 4 == 0 and index != 0
 			)
 
+		bind_post_expanders: ->
+			$(".post_thumb_footer").unbind('click')
+			$(".post_thumb_footer").click( ->
+				$(this).parent().find("a.post-thumb-ajax-modal").modal(
+					modalClass: "post-show modal"
+				)
+			)
+
 		draw_feed: ->
 			ko.applyBindings(@new_post_view_model_array_from_json())
 			@reset_css_classes()
+			@bind_post_expanders()
 
 	feed = new EndlessFeed
+	feed.uri_params.feed = $("feed_data").first().data('id')
 	feed.get_json_data()
+
 	$(".post_type").click ->
 		$(".post_type.active").removeClass("active")
 		$(this).addClass("active")
@@ -186,3 +198,4 @@ jQuery ->
 		else
 			feed.uri_params.category = category_id
 		feed.get_json_data()
+

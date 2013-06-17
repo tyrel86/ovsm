@@ -1,0 +1,63 @@
+.post-show-container
+	- unless @post.promotional
+		.left
+			- if @post.has_video?
+				.link
+					.icon= image_tag "icon-movie.png" 
+					.title{ class: active_show_link?("video",@post) ? "active" : "", data: {"media-type" => "video"}} Watch
+			- if @post.has_photos?
+				.link
+					.icon= image_tag "icon-photo.png" 
+					.title{ class: active_show_link?("photo",@post) ? "active" : "", data: {"media-type" => "photo"}} Look
+			- if @post.has_audio?
+				.link
+					.icon= image_tag "icon-audio.png" 
+					.title{ class: active_show_link?("audio",@post) ? "active" : "", data: {"media-type" =>"audio"}} Listen
+			- if @post.has_links?
+				.link
+					.icon= image_tag "icon-link.png" 
+					.title{ class: active_show_link?("link",@post) ? "active" : "", data: {"media-type" => "link"}} Explore
+		.right
+			- if @post.has_video?
+				.media{ class: active_media_panel?("video",@post) ? "active" : "", data: {"media-type" => "video"}}
+					#jp_playlist_post_show
+						.fp-playlist
+					- @post.video_album.video_files.each do |video_file|
+						%video_file{ data: {ogg: video_file.aws_urls["ogg"], mp4: video_file.aws_urls["h264"], webm: video_file.aws_urls["webm"]}}
+			- if @post.has_photos?
+				.media{ class: active_media_panel?("photo",@post) ? "active" : "", data: {"media-type" => "photo"}}
+					Photo
+			- if @post.has_audio?
+				.media{ class: active_media_panel?("audio",@post) ? "active" : "", data: {"media-type" => "audio"}}
+					.jp-jplayer#jquery_jplayer_post_show
+					.jp-audio.thumb#jp_container_post_show
+						.jp-type-playlist
+							.jp-gui.jp-interface
+								%ul.jp-controls
+									%li <a href="javascript:;" class="jp-previous" tabindex="1">previous</a>
+									%li <a href="javascript:;" class="jp-play" tabindex="1">play</a>
+									%li <a href="javascript:;" class="jp-pause" tabindex="1">pause</a>
+									%li <a href="javascript:;" class="jp-next" tabindex="1">next</a>
+									%li <a href="javascript:;" class="jp-stop" tabindex="1">stop</a>
+									%li <a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a>
+									%li <a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a>
+									%li <a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a>
+								.jp-progress
+									.jp-seek-bar
+									.jp-play-bar
+								.jp-volume-bar
+									.jp-volume-bar-value
+								.jp-time-holder
+									.jp-current-time
+									.jp-duration
+							.jp-playlist
+								%ul
+									%li
+							.jp-no-solution <span>Update Required</span> To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+					- @post.audio_album.audio_files.each do |audio_file|
+						%audio_file{data: {'name' => audio_file.name, 'mp3_url' => audio_file.aws_urls["mp3"], 'ogg_url' => audio_file.aws_urls["oga"]}}
+			- if @post.has_links?
+				.media{ class: active_media_panel?("link",@post) ? "active" : "", data: {"media-type" => "link"}}
+					Links
+			- unless @post.content.nil? or @post.content.empty?
+				.text= @post.content

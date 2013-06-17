@@ -25,8 +25,8 @@ jQuery ->
 
 		default_icon = L.icon(
 			iconUrl: '/assets/feed_marker.png'
-			iconSize: [32, 37]
-			iconAnchor: [16, 35]
+			iconSize: [40, 62]
+			iconAnchor: [20, 60]
 			popupAnchor: [0, -37]
 		)
 

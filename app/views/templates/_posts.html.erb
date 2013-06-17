@@ -1,5 +1,6 @@
 <script type="text/html" id="postTemplate">
     <div data-bind="attr: {class: 'post_thumb ' + thumb_style}">
+			<a class="post-thumb-ajax-modal" data-bind="attr: {href: '/posts/' + id}"></a>
 
 			<!-- ko if: thumb_style == 'text'  -->
 				<p data-bind="text: exerpt"></p>
@@ -97,5 +98,13 @@
 					<audio_file data-bind="attr: {'data-name': name, 'data-mp3_url': mp3_url, 'data-ogg_url': oga_url}"></audio_file>
 				</audio_album>
 			<!-- /ko -->
+			<div class="post_thumb_footer">
+				<a data-bind="attr: {href: '/users/' + user.username}">
+					<img data-bind="attr: {src: user.avatar.thumb.url}" class="avatar">
+				</a>
+				<a data-bind="attr: {href: '/users/' + user.username}">
+					<p class="user_name" data-bind="text: user.username"></p>
+				</a>
+			</div>
     </div>
 </script>

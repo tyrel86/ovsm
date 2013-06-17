@@ -65,4 +65,5 @@
 
 %time_data{ data: { time: @feed.current_time_stamp * 1000 }}
 %post_handle{ data: { handle: @feed.name } }
+%feed_data{ data: { id: @feed.id } }
 = render "templates/posts.html.erb"
