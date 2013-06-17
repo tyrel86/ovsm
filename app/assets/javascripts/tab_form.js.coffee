@@ -99,10 +99,8 @@ jQuery ->
 				start: (e, data) ->
 					$("#upload_photo").unbind('click')
 		else
-			if $(".media[data-media-type='audio']").size() > 0
-				$(".post-show").css("top","240px")
-			else
-				$(".post-show").css("top","120px")
+			$(".post-show").css("top","50px")
+			$(".post-show").css("margin-top","0px")
 			$(".post-show").css("max-height","#{$(window).height() - 100}px")
 			$(".post-show-container .left .link .title").click( ->
 				$(".link .title.active").removeClass("active")
@@ -135,4 +133,15 @@ jQuery ->
 				smoothPlayBar: true,
 				keyEnabled: true
 			})
+			$(".image_galery .caption").css('width', $(".image_galery img.active").css('width'))
+			$(".image_galery .selection img").click( ->
+				$(".image_galery img.active").removeClass("active")
+				new_url = $(this).attr('src').replace("thumb_","")
+				$(".image_galery img[src='#{new_url}']").addClass("active")
+
+				$(".image_galery .selection .selected").removeClass("selected")
+				$(this).addClass("selected")
+				$(".image_galery .caption").html( $(this).data("caption") )
+				$(".image_galery .caption").css('width', $(".image_galery img.active").css('width'))
+			)
 	)

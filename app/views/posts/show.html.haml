@@ -26,7 +26,13 @@
 						%video_file{ data: {ogg: video_file.aws_urls["ogg"], mp4: video_file.aws_urls["h264"], webm: video_file.aws_urls["webm"]}}
 			- if @post.has_photos?
 				.media{ class: active_media_panel?("photo",@post) ? "active" : "", data: {"media-type" => "photo"}}
-					Photo
+					.image_galery
+						.selection
+							- @post.photo_album.square_photos.each_with_index do |photo, index|
+								= image_tag( photo.photo.url(:thumb), class: (index == 0 ? "selected" : ""), data: {"caption" => photo.caption} )
+						- @post.photo_album.square_photos.each_with_index do |photo, index|
+							= image_tag( photo.photo.url, class: (index == 0 ? "active" : ""), data: {"caption" => photo.caption} )
+						.caption= @post.photo_album.square_photos.first.caption
 			- if @post.has_audio?
 				.media{ class: active_media_panel?("audio",@post) ? "active" : "", data: {"media-type" => "audio"}}
 					.jp-jplayer#jquery_jplayer_post_show
