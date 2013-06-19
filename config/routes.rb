@@ -22,4 +22,8 @@ Ovsm::Application.routes.draw do
 	match "/panda/authorize_upload", :to => "panda#authorize_upload"
 	match "/panda/authorize_upload_audio", :to => "panda#authorize_upload_audio"
 	match "/panda/notifications", to: "panda#notifications"
+
+	get "/suitcases/:id/add_post/:post_id" => "suitcases#add_post"
+	get "/suitcases/:id/remove_post/:post_id" => "suitcases#remove_post"
+	get "/suitcases/post_ids_for_current_user" => "suitcases#post_ids_for_current_user"
 end

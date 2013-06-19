@@ -1,5 +1,5 @@
 <script type="text/html" id="postTemplate">
-    <div data-bind="attr: {class: 'post_thumb ' + thumb_style}">
+    <div data-bind="attr: {class: 'post_thumb ' + thumb_style, 'data-post-id': id}">
 			<a class="post-thumb-ajax-modal" data-bind="attr: {href: '/posts/' + id}"></a>
 
 			<!-- ko if: thumb_style == 'text'  -->
@@ -105,6 +105,7 @@
 				<a data-bind="attr: {href: '/users/' + user.username}">
 					<p class="user_name" data-bind="text: user.username"></p>
 				</a>
+				<div class="add_to_luggage" data-bind="attr: {'data-post-id': id}"></div>
 			</div>
     </div>
 </script>

@@ -13,7 +13,11 @@ class PageLink < ActiveRecord::Base
 				self.description = object.description
 				self.image_url = object.images.first.source_url.to_s
 			end
-			true
+			unless self.title and self.description and self.image_url
+				self.errors[:url] << "Could not get content from url"
+			else
+				true
+			end
 		rescue
 			self.errors[:url] << "Could not connect with #{url}"
 			false

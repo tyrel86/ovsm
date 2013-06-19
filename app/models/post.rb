@@ -28,7 +28,7 @@ class Post < ActiveRecord::Base
 				pl = PageLink.find_by_url( url )
 				pl ||= PageLink.create( url: url )
 				self.page_links << pl if pl.valid? and not self.page_links.include? pl
-				self.created_page_link_this_time = true
+				self.created_page_link_this_time = true if pl.valid?
 			end
 		end
 	end

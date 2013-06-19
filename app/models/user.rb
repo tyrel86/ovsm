@@ -22,8 +22,9 @@ class User < ActiveRecord::Base
 	has_many :square_photos
 	has_many :video_files
 	has_many :audio_files
+	has_many :suitcases
 
-	before_create :set_home_town
+	before_create :set_home_town, :add_a_starter_suitcase
 
 	def set_home_town
 		latlng = [lat, lng]
@@ -33,6 +34,16 @@ class User < ActiveRecord::Base
 			#Default to user profile home town for now denver soon based on user settings
 			self.feed = Feed.find_by_name( "Denver, CO" )
 		end
+	end
+
+	def add_a_starter_suitcase
+		self.suitcases.build( name: "My First Suitcase" )
+	end
+
+	def suit_case_post_ids
+		ids = []
+		suitcases.each {|s| ids += s.post_ids}
+		ids.uniq
 	end
 
 	class << self

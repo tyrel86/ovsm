@@ -31,7 +31,7 @@
 							- @post.photo_album.square_photos.each_with_index do |photo, index|
 								= image_tag( photo.photo.url(:thumb), class: (index == 0 ? "selected" : ""), data: {"caption" => photo.caption} )
 						- @post.photo_album.square_photos.each_with_index do |photo, index|
-							= image_tag( photo.photo.url, class: (index == 0 ? "active" : ""), data: {"caption" => photo.caption} )
+							= link_to(image_tag( photo.photo.url, class: (index == 0 ? "active" : ""), data: {"caption" => photo.caption} ), photo.photo.url, target: "_blank")
 						.caption= @post.photo_album.square_photos.first.caption
 			- if @post.has_audio?
 				.media{ class: active_media_panel?("audio",@post) ? "active" : "", data: {"media-type" => "audio"}}
@@ -62,8 +62,12 @@
 							.jp-no-solution <span>Update Required</span> To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
 					- @post.audio_album.audio_files.each do |audio_file|
 						%audio_file{data: {'name' => audio_file.name, 'mp3_url' => audio_file.aws_urls["mp3"], 'ogg_url' => audio_file.aws_urls["oga"]}}
-			- if @post.has_links?
-				.media{ class: active_media_panel?("link",@post) ? "active" : "", data: {"media-type" => "link"}}
-					Links
 			- unless @post.content.nil? or @post.content.empty?
 				.text= @post.content
+			- if @post.has_links?
+				.media{ class: active_media_panel?("link",@post) ? "active" : "", data: {"media-type" => "link"}}
+					- @post.page_links.each do |page_link|
+						.page-link{ id: "page_link_#{page_link.id}" }
+							.title= page_link.title
+							.image= image_tag page_link.image_url
+							.description= page_link.description

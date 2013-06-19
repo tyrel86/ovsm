@@ -17,7 +17,6 @@ jQuery ->
 			for key, value of @uri_params
 				uri += "&" unless key == "feed" or value == null
 				uri += "#{key}=#{value}" unless value == null
-			console.log uri
 			uri
 
 		photo_album_click_listeners: ->
@@ -52,6 +51,28 @@ jQuery ->
 				add_remove_buttons(parent)
 			)
 			
+		update_suitcase: (id) ->
+			$(".post_thumb[data-post-id=#{id}]").find(".add_to_luggage").addClass("added")
+
+		update_suitcases: ->
+			data = $.ajax(
+				dataType: "json"
+				url: "/suitcases/post_ids_for_current_user"
+				context: @
+				success: (data) ->
+					@update_suitcase(id) for id in data["post_ids"]
+			)
+
+		suitcase_click_listeners: ->
+			$(".add_to_luggage").unbind('click').click( ->
+				event.stopPropagation()
+				if $(this).hasClass("added")
+					$.ajax( "/suitcases/1/remove_post/#{$(this).data('post-id')}")
+					$(this).removeClass("added")
+				else
+					$.ajax( "/suitcases/1/add_post/#{$(this).data('post-id')}")
+					$(this).addClass("added")
+			)
 
 		get_json_data: ->
 			@json_data = $.ajax(
@@ -92,6 +113,8 @@ jQuery ->
 							keyEnabled: true
 						})
 					)
+					@update_suitcases()
+					@suitcase_click_listeners()
 				)
 
 		post_view_model: (post) ->

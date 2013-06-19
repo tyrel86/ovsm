@@ -108,6 +108,7 @@ jQuery ->
 
 				$(".media.active").removeClass("active")
 				$(".media[data-media-type=" + $(this).data("media-type") + "]").addClass("active")
+				$(".image_galery .caption").css('width', $(".image_galery img.active").css('width'))
 			)
 			playlist = []
 			$(".right video_file").each( (i,e) ->
@@ -142,6 +143,10 @@ jQuery ->
 				$(".image_galery .selection .selected").removeClass("selected")
 				$(this).addClass("selected")
 				$(".image_galery .caption").html( $(this).data("caption") )
+				if $(this).data("caption") == ""
+					$(".image_galery .caption").hide()
+				else
+					$(".image_galery .caption").show()
 				$(".image_galery .caption").css('width', $(".image_galery img.active").css('width'))
 			)
 	)

@@ -38,11 +38,32 @@
 			.media {
 				display: none;
 				margin-bottom: 15px;
-				.image_galery {
-					text-align: center;
-					.selection {
-						width: 100%;
-						height: 100px;
+				.page-link{
+					padding: 7px;
+					border-bottom: 2px solid black;
+					margin-bottom: 10px;
+					min-height: 300px;
+					.title {
+						font-weight: bold;
+						font-size: 35px;
+						text-decoration: underline;
+					}
+					.image {
+						float: left;
+						margin: 15px;
+						img {
+							max-height: 190px;
+						}
+					}
+					.description {
+						font-size: 24px;
+					}
+				}
+			.image_galery {
+				text-align: center;
+				.selection {
+					width: 100%;
+					height: 110px;
 						overflow-x: auto;
 						overflow-y: hidden;
 						white-space: nowrap;
@@ -76,6 +97,15 @@
 						padding-top: 10px;
 					}
 				}
+				#jp_container_post_show {
+					width: 710px;
+					.jp-play-bar {
+						display: inline-block;
+						position: relative;
+						top: -18px;
+						left: 1px;
+					}
+				}
 				&.active {
 					display: block;
 				}
@@ -85,6 +115,7 @@
 				padding: 3px;
 				max-height: 250px;
 				overflow-y: auto;
+				font-size: 20px;
 			}
 		}
 	}
@@ -272,6 +303,20 @@
 				text-align: center;
 				width: 118px;
 				color: white;
+			}
+			.add_to_luggage {
+				position: absolute;
+				left: 175px;
+				top: 11px;
+				width: 42px;
+				height: 42px;
+				background-image: url('/assets/luggage_not_added.png');
+				cursor: hand;
+				cursor: pointer;
+				&.added {
+					background-color: transparent;
+					background-image: url('/assets/luggage_added.png');
+				}
 			}
 		}
 		.flowplayer {
