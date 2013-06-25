@@ -29,3 +29,54 @@
 	border-bottom: $size solid transparent; 
 	border-right: $size solid $color;
 }
+
+@mixin star-five( $size, $color ) {
+	margin: (($size/2) + px) 0;
+	position: relative;
+	display: block;
+	color: $color;
+	width: 0px;
+	height: 0px;
+	border-right:  ($size + px) solid transparent;
+	border-bottom: (($size * 0.7) + px)  solid $color;
+	border-left:   ($size + px) solid transparent;
+	-moz-transform:    rotate(35deg);
+	-webkit-transform: rotate(35deg);
+	-ms-transform:     rotate(35deg);
+	-o-transform:      rotate(35deg);
+	
+	&:before {
+		border-bottom: (($size * 0.8) + px) solid $color;
+		border-left: (($size * 0.3) + px) solid transparent;
+		border-right: (($size * 0.3) + px) solid transparent;
+		position: absolute;
+		height: 0;
+		width: 0;
+		top: (($size * 0.45 * -1) + px);
+		left: (($size * 0.65 * -1) + px);
+		display: block;
+		content: '';
+		-webkit-transform: rotate(-35deg);
+		-moz-transform:    rotate(-35deg);
+		-ms-transform:     rotate(-35deg);
+		-o-transform:      rotate(-35deg);
+	}
+
+	&:after {
+		position: absolute;
+		display: block;
+		color: red;
+		top: ($size * 0.003) + px;
+		left: ($size * 1.05 * -1) + px;
+		width: 0px;
+		height: 0px;
+		border-right: ($size + px) solid transparent;
+		border-bottom: (($size * 0.7) + px) solid $color;
+		border-left: ($size + px) solid transparent;
+		-webkit-transform: rotate(-70deg);
+		-moz-transform:    rotate(-70deg);
+		-ms-transform:     rotate(-70deg);
+		-o-transform:      rotate(-70deg);
+		content: '';
+	}
+}

@@ -6,6 +6,8 @@ jQuery ->
 			@uri
 			@uri_params =
 				feed: null
+				user: null
+				luggage: null
 				promotional: false
 				category: null
 				content_type: null
@@ -15,7 +17,7 @@ jQuery ->
 		api_uri: ->
 			uri = "/posts.json?"
 			for key, value of @uri_params
-				uri += "&" unless key == "feed" or value == null
+				uri += "&" unless key == "feed" or value == null or key == "user"
 				uri += "#{key}=#{value}" unless value == null
 			uri
 
@@ -186,7 +188,10 @@ jQuery ->
 		reset_css_classes: ->
 			$(".post_thumb").each( (index,element) ->
 				$(element).removeClass("last")
-				$(element).addClass("last") if (index + 1) % 4 == 0 and index != 0
+				if OvsmLib.feed.uri_params.user == null
+					$(element).addClass("last") if (index + 1) % 4 == 0 and index != 0
+				else
+					$(element).addClass("last") if (index + 1) % 3 == 0 and index != 0
 			)
 
 		bind_post_expanders: ->
@@ -199,26 +204,38 @@ jQuery ->
 
 		draw_feed: ->
 			ko.applyBindings(@new_post_view_model_array_from_json())
+			console.log @uri_params
 			@reset_css_classes()
 			@bind_post_expanders()
 
-	feed = new EndlessFeed
-	feed.uri_params.feed = $("feed_data").first().data('id')
-	feed.get_json_data()
+	unless $("feed_data").size() == 0 and $("user_feed").size() == 0
+		OvsmLib.feed = new EndlessFeed
+		OvsmLib.feed.uri_params.feed = $("feed_data").first().data('id') if $("feed_data").size() > 0
+		OvsmLib.feed.uri_params.user = $("user_feed").first().data('user-id') if $("user_feed").size() > 0
+		OvsmLib.feed.get_json_data()
 
-	$(".post_type").click ->
-		$(".post_type.active").removeClass("active")
-		$(this).addClass("active")
-		content_type = $(this).data("type")
-		content_type = null if content_type == "all"
-		feed.uri_params.content_type = content_type
-		feed.get_json_data()
+		$(".post_type").click ->
+			$(".post_type.active").removeClass("active")
+			$(this).addClass("active")
+			content_type = $(this).data("type")
+			content_type = null if content_type == "all"
+			OvsmLib.feed.uri_params.content_type = content_type
+			OvsmLib.feed.get_json_data()
 
-	$("#post_categories_select").change ->
-		category_id = $(this).val()
-		if category_id == "All Categories"
-			feed.uri_params.category = null
-		else
-			feed.uri_params.category = category_id
-		feed.get_json_data()
+		$("#post_categories_select").change ->
+			category_id = $(this).val()
+			if category_id == "All Categories"
+				OvsmLib.feed.uri_params.category = null
+			else
+				OvsmLib.feed.uri_params.category = category_id
+			OvsmLib.feed.get_json_data()
 
+		$(".luggage_toggle").click( ->
+			if OvsmLib.feed.uri_params.luggage == null
+				$(this).find('img').attr('src', "/assets/luggage_added.png")
+				OvsmLib.feed.uri_params.luggage = true
+			else
+				$(this).find('img').attr('src', "/assets/luggage_not_added.png")
+				OvsmLib.feed.uri_params.luggage = null
+			OvsmLib.feed.get_json_data()
+		)

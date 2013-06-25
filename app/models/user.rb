@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 	mount_uploader :avatar, AvatarUploader
 	belongs_to :interest
 	belongs_to :feed
-	has_many :posts
+	has_many :posts, :dependent => :destroy
 	has_many :landscape_photos
 	has_many :portrait_photos
 	has_many :square_photos

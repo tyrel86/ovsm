@@ -1,0 +1,31 @@
+!!! 5
+%html
+	%head
+		%title OverSeaMe Business Sign Up
+		= stylesheet_link_tag "bootstrap", :media => "all"
+		= stylesheet_link_tag "bootstrap-responsive", :media => "all"
+		= stylesheet_link_tag "business_backend", :media => "all"
+		= javascript_include_tag "jquery"
+		= javascript_include_tag "bootstrap"
+
+	%body
+
+		.navbar.navbar-inverse.navbar-fixed-top
+			.navbar-inner
+				.container
+					%button.btn.btn-navbar(type="button" data-toggle="collapse" data-target=".nav-collapse")
+						%span.icon-bar
+						%span.icon-bar
+						%span.icon-bar
+					= link_to "OverSeaMe", class: "brand" do
+						= image_tag "logo.png"
+					.nav-collapse.collapse
+						%ul.nav
+							%li.active= link_to "#","#"
+							%li.active= link_to "#","#"
+							%li.active= link_to "#","#"
+							%li.active= link_to "#","#"
+							%li.active= link_to "#","#"
+							%li.active= link_to "#","#"
+		.container#content
+			= yield

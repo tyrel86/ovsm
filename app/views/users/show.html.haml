@@ -1,0 +1,38 @@
+%user_feed{ data: {user_id: @user.id}}
+.profile
+	.avatar= image_tag @user.avatar.url
+	.weather_widget
+		- today = @forecast.today
+		.name= "#{@user.name}"
+		.name= "#{@feed.name}"
+		.icon= icon_to_image( today[:icon], "blue" )
+		.high= "High: #{today[:high]}&deg;".html_safe
+		.low= "Low: #{today[:low]}&deg;".html_safe
+		.digital_clock
+		.luggage_toggle{ luggage: false }= image_tag "luggage_not_added.png"
+.luggage
+	.span-24.feed_show_nav
+		.categories
+			.link.active.post_type{ data: {type: "all"} }
+				.label All
+				.image= image_tag "icon-all.png"
+			.link.post_type{ data: {type: "text"} }
+				.label Text
+				.image= image_tag "icon-text.png"
+			.link.post_type{ data: {type: "photos"} }
+				.label Photos
+				.image= image_tag "icon-photo.png"
+			.link.post_type{ data: {type: "audio"} }
+				.label Audio
+				.image= image_tag "icon-audio.png"
+			.link.post_type{ data: {type: "links"} }
+				.label Links
+				.image= image_tag "icon-link.png"
+			.link.post_type{ data: {type: "video"} }
+				.label Videos
+				.image= image_tag "icon-movie.png"
+			= select_tag( :post_categories_select, options_for_select( ['All Categories'] + ovsm_optionify( @post_categories ) ) )
+
+	.ovsm_feed_engine(data-bind="template: { name: 'postTemplate', foreach: posts, as: 'post' }")
+
+= render "templates/posts.html.erb"

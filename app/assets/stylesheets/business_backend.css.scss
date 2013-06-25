@@ -1,0 +1,101 @@
+@import "compass/css3";
+@import "partials/variables";
+@import "partials/mixins";
+
+.navbar {
+	.navbar-inner {
+		background-color: $light_blue;
+		@include background-image(linear-gradient(color-stops($dark_blue, $light_blue)));
+		height: 90px;
+		ul.nav {
+			position: relative;
+			top: 25px;
+			li {
+				a {
+					background-color: rgba(0,0,0,0.5);
+				}
+				&.active {
+					a {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+	}
+}
+
+.container#content {
+	padding-top: 100px;
+	.jumbotron {
+		text-align: center;
+		.lead {
+			font-size: 30px;
+		}
+	}
+	.span4.subscription {
+		background-color: $alt_light_grey;
+		position: relative;
+		padding-top: 20px;
+		.banner {
+			@include background-image(linear-gradient(color-stops($alt_light_blue, $alt_dark_blue)));
+			width: 390px;
+			position: relative;
+			left: -10px;
+			z-index: 99;
+			margin-bottom: 20px;
+			h2 {
+				color: white;
+				display: inline;
+				position: relative;
+				left: -75px;
+			}
+			.star-container {
+				width: 300px;
+				display: inline;
+				position: relative;
+				left: 345px;
+				top: 10px;
+				.star-five.on {
+					@include star-five( 10, white );
+					float: left;
+				}
+				.star-five.off {
+					@include star-five( 10, #0071ab );
+					float: left;
+				}
+			}
+		}
+		.banner_left {
+			position: absolute;
+			top: 50px;
+			left: -10px;
+			z-index: -1;
+			@include arrow-left( 10px, $alt_dark_blue );
+		}
+		.banner_right {
+			position: absolute;
+			top: 50px;
+			left: 370px;
+			z-index: -1;
+			@include arrow-right( 10px, $alt_dark_blue );
+		}
+		.description {
+			height: 100px;
+		}
+		.price {
+			background-color: $alt_mid_grey;
+			min-height: 80px;
+			padding: 42px;
+			color: $alt_dark_blue;
+			h2 {
+				font-size: 77px;
+			}
+			.duration {
+				position: relative;
+				top: -10px;
+				left: 100px;
+				font-size: 24px;
+			}
+		}
+	}
+}

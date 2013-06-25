@@ -11,7 +11,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{Rails.env}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-	process :resize_to_fill => [300, 300]
+	process :resize_to_limit => [400, 0]
 
   version :thumb do
     process :resize_to_fill => [75,75]

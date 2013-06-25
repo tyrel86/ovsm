@@ -1,4 +1,6 @@
 Ovsm::Application.routes.draw do
+  devise_for :businesses
+
   use_link_thumbnailer
 
 	#For now use a custom login controller switch back to devise latter
@@ -8,6 +10,8 @@ Ovsm::Application.routes.draw do
 	end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+	resources :users
 
 	get "/feeds" => "feeds#index", as: :user_root
 	post "/feeds/fly_and_show" => "feeds#fly_and_show", as: :fly_and_show

@@ -12,4 +12,15 @@ module ApplicationHelper
 			result.push element
 		end
 	end
+
+	def draw_on_off_stars( on = 3 )
+		out = "<div class='star-container'>"
+		on.times do
+			out += "<div class='star-five on'></div>"
+		end
+		(3 - on).times do
+			out += "<div class='star-five off'></div>"
+		end
+		out + "</div>"
+	end
 end

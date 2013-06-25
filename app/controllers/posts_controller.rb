@@ -2,13 +2,24 @@ class PostsController < ApplicationController
 	before_filter :authenticate_user!
 
 	def index
-		@posts = Post.where( feed_id: params[:feed] ).where( promotional: params[:promotional] ).where( ready: true ).order("created_at desc")
+		if params[:user]
+			unless params[:luggage] == "true"
+				@posts = Post.where( user_id: params[:user] ).where( promotional: params[:promotional] ).where( ready: true ).order("created_at desc")
+			else
+				@user = User.find( params[:user] )
+				@posts = Post.where( id: @user.suit_case_post_ids )
+			end
+		elsif params[:feed]
+			@posts = Post.where( feed_id: params[:feed] ).where( promotional: params[:promotional] ).where( ready: true ).order("created_at desc")
+		else
+			@posts = Post.where( promotional: params[:promotional] ).where( ready: true ).order("created_at desc")
+		end
 		@posts = @posts.where( post_category_id: params[:category] ) if params[:category]
 		@posts = @posts.send( "with_#{params[:content_type]}" ) if params[:content_type]
 		Time.parse(params[:last_post_time]) if params[:last_post_time]
 		last_post_time = params[:last_post_time] || Time.now + 1.second
 		@posts = @posts.where{ created_at < last_post_time } if params[:last_post_time]
-		@posts = @posts.limit( params[:number_of_posts_to_fetch] || 20 )
+		@posts = @posts.limit( 20 )
 		
 		params[:page] ||= 1
 		respond_to do |format|
