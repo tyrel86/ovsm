@@ -4,12 +4,12 @@
 		.nav
 			%ul
 				%li{ class: "link" }
-					= active_link_to "#" do
+					= link_to "/users" do
 						= image_tag "home.png", class: :home
 				%li= active_link_to "Profile", "/users"
 				%li= active_link_to "Zones", feeds_path
-				%li= active_link_to "Connect", "#"
-				%li= link_to "Account", "#"
+				-# %li= active_link_to "Connect", "#"
+				-# %li= link_to "Account", "#"
 				%li
 					=link_to_modal new_post_path do
 						= image_tag "create_post.png", class: :new_post

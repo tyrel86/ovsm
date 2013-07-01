@@ -28,6 +28,7 @@
 							</video>
 						</div>
 					<!--/ko -->
+
 					<!-- ko if: videos.length > 1 -->
 						<div data-bind="attr: {class: 'flowplayer-playlist', id: 'flowplayer-playlist-' + id, 'data-postid': id}"></div>
 						<video_album data-bind="attr: {id: 'album' + id}, foreach: videos">
@@ -106,10 +107,34 @@
 				<!-- ko if: promo_description -->
 					<p class="description" data-bind="text: promo_description"></p>
 				<!-- /ko -->
-				<!-- ko if: promo_discounted_price && promo_price -->
-					<div class="savings">
+				<!-- ko if: promo_type == 'deal' -->
+					<div class="top_info">
 						<div class="deal_price" data-bind="text: '$' + promo_discounted_price"></div>
 						<div class="discount" data-bind="text: ((promo_discounted_price / promo_price)*100) + '% Off'"></div>
+					</div>
+				<!-- /ko -->
+				<!-- ko if: promo_type == 'job' -->
+					<div class="top_info">
+						<div class="deal_price" data-bind="text: '$' + promo_wage"></div>
+						<div class="discount" data-bind="text: 'per ' + ((promo_wage_time == 'Hourly') ? 'Hour' : 'Year' )"></div>
+					</div>
+				<!-- /ko -->
+				<!-- ko if: promo_type == 'event' -->
+					<div class="top_info">
+						<!-- ko if: promo_free == false -->
+							<div class="deal_price" data-bind="text: '$' + promo_price"></div>
+						<!-- /ko -->
+						<!-- ko if: promo_free == true -->
+							<div class="deal_price" data-bind="text: 'Free Event'"></div>
+						<!-- /ko -->
+					</div>
+				<!-- /ko -->
+				<!-- ko if: promo_type == 'product' -->
+					<div class="top_info">
+						<div class="deal_price" data-bind="text: '$' + promo_price"></div>
+						<!-- ko if: promo_shipping_cost -->
+							<div class="discount" data-bind="text: 'Shipping: $' + promo_shipping_cost"></div>
+						<!-- /ko -->
 					</div>
 				<!-- /ko -->
 			<!-- /ko -->

@@ -71,3 +71,39 @@
 							.title= page_link.title
 							.image= image_tag page_link.image_url
 							.description= page_link.description
+	- else @post.promotional
+		.left
+			.link
+				.icon= image_tag "icon-photo.png" 
+				.title{ class: "active", data: {"media-type" => "info"}} Info
+			- if @post.promo_address
+				.link
+					.icon= image_tag "icon-movie.png" 
+					.title{ data: {"media-type" => "location"}} Location
+		.right
+			.media{ class: "active", data: {"media-type" => "info"}}
+				- if @post.promo_image
+					= image_tag @post.promo_image.url, class: "promo_image"
+				.price
+					- case @post.promo_type
+					- when "deal"
+						.original_price= "$#{@post.promo_price}"
+						.deal_price= "$#{@post.promo_discounted_price}"
+					- when "job"
+						.job_type= "#{@post.promo_labor_characteristic} Job"
+						.job_wage= "$#{@post.promo_wage} per #{((@post.promo_wage_time == "Hourly") ? "Hour" : "Year")}"
+					- when "Event"
+						- if @post.promo_free
+							.event_cost Free Event
+						- else
+							.event_cost= "Event costs: $#{@post.promo_price}"
+						.event_time
+							.event_start= @post.promo_start_date
+							.event_end= @post.promo_end_date
+					- when "product"
+						.product_price= "$#{@post.promo_price}"
+						.product_shipping= "$#{@post.promo_shipping_cost}"
+				.description
+					= @post.promo_description
+			.media{data: {"media-type" => "location"}}
+				%iframe(width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=#{@post.promo_address}&output=embed")

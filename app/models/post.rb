@@ -22,6 +22,14 @@ class Post < ActiveRecord::Base
 							:convert_line_brakes, :sanatize_html, :update_has_attrs,
 							:update_state, :decern_promo_loc
 
+	def promo_address
+		if promo_street_address or promo_city or promo_state or promo_zip
+			"#{promo_street_address} #{promo_city}, #{promo_state} #{promo_zip}"
+		else
+			false
+		end
+	end
+
 	def decern_promo_loc
 		if location_type == "same"
 			business = self.business
