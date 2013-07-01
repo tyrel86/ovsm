@@ -1,5 +1,4 @@
 Ovsm::Application.routes.draw do
-  devise_for :businesses
 
   use_link_thumbnailer
 
@@ -9,6 +8,8 @@ Ovsm::Application.routes.draw do
 		root to: "devise/registrations#new"
 	end
   devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :businesses
+	get "/feeds/business_root" => "feeds#business_root", as: :business_root
   ActiveAdmin.routes(self)
 
 	resources :users

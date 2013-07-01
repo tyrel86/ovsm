@@ -274,6 +274,37 @@
 				}
 			}
 		}
+		&.deal, &.partner {
+			@include background-image(linear-gradient(color-stops($light_grey, $dark_grey)));
+			font-size: 16px;
+			padding: 5px;
+			color: white;
+			.deal_image {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 228px;
+			}
+			.savings {
+				padding: 3px;
+				position: absolute;
+				background-color: rgba(0,0,0,0.7);
+				top: 0px;
+				left: 0px;
+				width: 222px;
+				.deal_price {float: left}
+				.discount {float: right}
+			}
+			p.description {
+				color: white;
+				position: absolute;
+				bottom: 46px;
+				width: 222px;
+				left: 0px;
+				background-color: rgba(0,0,0,0.7);
+				padding: 3px;
+			}
+		}
 		.post_thumb_footer {
 			position: absolute;
 			bottom: 0px;

@@ -1,0 +1,5 @@
+= simple_form_for @post do |f|
+	= f.input :promo_description, label: "What kind of partnership are you seeking"
+	= f.input :promo_image, label: "You can atatch an image here!"
+
+	= f.input :promo_type, as: :hidden, input_html: { value: "partner" }

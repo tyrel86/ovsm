@@ -7,6 +7,7 @@
 		= stylesheet_link_tag "business_backend", :media => "all"
 		= javascript_include_tag "jquery"
 		= javascript_include_tag "bootstrap"
+		= javascript_include_tag "bussiness_backend"
 
 	%body
 
@@ -19,13 +20,5 @@
 						%span.icon-bar
 					= link_to "OverSeaMe", class: "brand" do
 						= image_tag "logo.png"
-					.nav-collapse.collapse
-						%ul.nav
-							%li.active= link_to "#","#"
-							%li.active= link_to "#","#"
-							%li.active= link_to "#","#"
-							%li.active= link_to "#","#"
-							%li.active= link_to "#","#"
-							%li.active= link_to "#","#"
 		.container#content
 			= yield

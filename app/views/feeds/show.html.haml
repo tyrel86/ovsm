@@ -37,9 +37,9 @@
 							= "#{values["low"]}&deg;".html_safe
 .span-24.feed_show_nav
 	.top_level
-		.people.active People
-		.businesses Businesses
-	.categories
+		.tl_select.people.active People
+		.tl_select.businesses Businesses
+	.categories.people
 		.link.active.post_type{ data: {type: "all"} }
 			.label All
 			.image= image_tag "icon-all.png"
@@ -59,6 +59,25 @@
 			.label Videos
 			.image= image_tag "icon-movie.png"
 		= select_tag( :post_categories_select, options_for_select( ['All Categories'] + ovsm_optionify( @post_categories ) ) )
+	.categories.businesses( style="display:none" )
+		.link.active.post_type{ data: {type: "all"} }
+			.label All
+			.image= image_tag "icon-all.png"
+		.link.post_type{ data: {type: "deal"} }
+			.label Deals
+			.image= image_tag "icon-text.png"
+		.link.post_type{ data: {type: "partner"} }
+			.label Partners
+			.image= image_tag "icon-movie.png"
+		.link.post_type{ data: {type: "job"} }
+			.label Jobs
+			.image= image_tag "icon-photo.png"
+		.link.post_type{ data: {type: "event"} }
+			.label Events
+			.image= image_tag "icon-audio.png"
+		.link.post_type{ data: {type: "product"} }
+			.label Products
+			.image= image_tag "icon-link.png"
 
 .span-24
 	.ovsm_feed_engine(data-bind="template: { name: 'postTemplate', foreach: posts, as: 'post' }")

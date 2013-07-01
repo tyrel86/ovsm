@@ -1,0 +1,17 @@
+= simple_form_for @post do |f|
+	= f.input :promo_description, label: "Describe the event"
+	= f.input :promo_free, label: "Is the event free?"
+	= f.input :promo_price, label: "If not how much is admission?"
+	= f.input :promo_image, label: "You can atatch an image here!"
+
+	= f.input :promo_start_date, label: "When does your event start", as: "datetime"
+	= f.input :promo_end_date, label: "When does your event end", as: "datetime"
+
+	%p Location of the event
+	= f.input :location_type, as: :radio_buttons, collection: [["No Location","none"], ["Same as our business","same"], ["Custom","cust"]], label: false
+	= f.input :promo_street_address, label: "Street", input_html: {class: "opt-loc"}, label_html: {class: "opt-loc"}
+	= f.input :promo_city, label: "City", input_html: {class: "opt-loc"}, label_html: {class: "opt-loc"}
+	= f.input :promo_state, label: "State", input_html: {class: "opt-loc"}, label_html: {class: "opt-loc"}
+	= f.input :promo_zip, label: "Zipcode", input_html: {class: "opt-loc"}, label_html: {class: "opt-loc"}
+
+	= f.input :promo_type, as: :hidden, input_html: { value: "event" }

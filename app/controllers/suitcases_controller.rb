@@ -1,6 +1,7 @@
 class SuitcasesController < ApplicationController
 	def post_ids_for_current_user
-		render json: { post_ids: current_user.suit_case_post_ids }
+		render json: { post_ids: current_user.suit_case_post_ids } if user_signed_in?
+		render json: { post_ids: "N/A" } if business_signed_in?
 	end
 
 	def add_post

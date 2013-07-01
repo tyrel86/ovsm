@@ -1,5 +1,5 @@
 class FeedsController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :require_login
 
 	def index
 		respond_to do |format|
@@ -11,7 +11,11 @@ class FeedsController < ApplicationController
 		end
 	end
 
-	#From the airplane form in the feeds index
+	def business_root
+		redirect_to current_business.feed if current_business
+		redirect_to new_business_session_path unless current_business
+	end
+
 	def fly_and_show
 		@feed = Feed.find_by_name( params[:feed][:name] )
 		redirect_to @feed

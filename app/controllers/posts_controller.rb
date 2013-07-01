@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :require_login
 
 	def index
 		if params[:user]
@@ -29,20 +29,26 @@ class PostsController < ApplicationController
 
   def new
 		@post = Post.new
+		render "new_promo" if business_signed_in?
   end
 
   def create
 		@post = Post.new( params[:post] )
-		@post.user = current_user
-		#Later will need to check for current_business and if it exists set to true
-		@post.promotional = false
-		latlng = [params[:post][:lat], params[:post][:lng]]
-		latlng = fall_back_lat_lng_from_ip if latlng.first.nil? or latlng.last.nil? or latlng.first.empty? or latlng.last.empty?
-		unless latlng.first.nil? or latlng.last.nil?
-			@post.feed = Feed.closest( origin: latlng ).first
-		else
-			#Default to user profile home town for now denver soon based on user settings
-			@post.feed = Feed.find_by_name( "Denver, CO" )
+		if user_signed_in?
+			@post.user = current_user
+			@post.promotional = false
+			latlng = [params[:post][:lat], params[:post][:lng]]
+			latlng = fall_back_lat_lng_from_ip if latlng.first.nil? or latlng.last.nil? or latlng.first.empty? or latlng.last.empty?
+			unless latlng.first.nil? or latlng.last.nil?
+				@post.feed = Feed.closest( origin: latlng ).first
+			else
+				#Default to user profile home town for now denver soon based on user settings
+				@post.feed = Feed.find_by_name( "Denver, CO" )
+			end
+		elsif business_signed_in?
+			@post.business = current_business
+			@post.promotional = true
+			@post.feed = current_business.feed
 		end
 		if @post.save
 			redirect_to feed_path( @post.feed ), notice: "Post created"

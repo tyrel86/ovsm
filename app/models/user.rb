@@ -54,13 +54,15 @@ class User < ActiveRecord::Base
       	nil
 			end
     end
+
 		def find_first_by_auth_conditions(warden_conditions)
 			conditions = warden_conditions.dup
 			if login = conditions.delete(:login)
-				where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+				user = where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
 			else
-				where(conditions).first
+				user = where(conditions).first
 			end
+			user
 		end
 
 		def find_for_facebook_oauth(auth, signed_in_resource=nil)

@@ -1,9 +1,15 @@
 class Post < ActiveRecord::Base
   attr_accessible :content, :lat, :lng, :photo_ids, :audio_ids, :video_ids, :post_category_id,
-									:has_video, :has_audio, :has_photos, :has_links, :state
-	attr_accessor :lat, :lng, :photo_ids, :audio_ids, :video_ids, :created_page_link_this_time
+									:has_video, :has_audio, :has_photos, :has_links, :state,
+									:promo_price, :promo_discounted_price, :promo_description, :promo_street_address, :promo_city,
+									:promo_state, :promo_zip, :promo_start_date, :promo_end_date, :promo_labor_characteristic,
+									:promo_free, :promo_wage, :promo_wage_time, :promo_shipping_cost, :promo_href, :promo_image, :promo_name,
+									:location_type, :promo_contact_email, :promo_type
+	attr_accessor :lat, :lng, :photo_ids, :audio_ids, :video_ids, :created_page_link_this_time, :location_type
+	mount_uploader :promo_image, PromoImageUploader
 	belongs_to :feed
 	belongs_to :user
+	belongs_to :business
 	has_one :photo_album, dependent: :destroy
 	has_one :audio_album, dependent: :destroy
 	has_one :video_album, dependent: :destroy
@@ -14,7 +20,22 @@ class Post < ActiveRecord::Base
 	before_save :arayify_id_attrs, :initilize_dependancies, :update_photo_album, :create_panda_uploads, 
 							:link_or_create_page_links_from_content,
 							:convert_line_brakes, :sanatize_html, :update_has_attrs,
-							:update_state
+							:update_state, :decern_promo_loc
+
+	def decern_promo_loc
+		if location_type == "same"
+			business = self.business
+			self.promo_street_address = business.street_address
+			self.promo_city = business.city
+			self.promo_state = business.state
+			self.promo_zip = business.zip_code
+		elsif location_type == "none"
+			self.promo_street_address = nil
+			self.promo_city = nil
+			self.promo_state = nil
+			self.promo_zip = nil
+		end
+	end
 
 	def update_state
 		self.ready = panda_uploads.empty? ? true : false
@@ -43,10 +64,12 @@ class Post < ActiveRecord::Base
 
 	#For easy fast content filter queries
 	def update_has_attrs
-		self.has_video = (video_album.video_files.size > 0) ? true : false
-		self.has_audio = (audio_album.audio_files.size > 0) ? true : false
-		self.has_photos = (photo_album.square_photos.size > 0) ? true : false
-		self.has_links = (page_links.count > 0 or created_page_link_this_time) ? true : false
+		unless promotional == true
+			self.has_video = (video_album.video_files.size > 0) ? true : false
+			self.has_audio = (audio_album.audio_files.size > 0) ? true : false
+			self.has_photos = (photo_album.square_photos.size > 0) ? true : false
+			self.has_links = (page_links.count > 0 or created_page_link_this_time) ? true : false
+		end
 		true
 	end
 

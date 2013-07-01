@@ -1,3 +1,8 @@
+.modal {
+	max-height: 70%;
+	overflow-y: auto;
+	width: 415px;
+}
 .feedapp {
 	width: 80%;
 	left: 25% !important;
@@ -8,6 +13,13 @@
 	overflow-y: auto;
 }
 .tabular_form {
+	&.promo {
+		.nav {
+			.link {
+				right: -2px;
+			}
+		}
+	}
 	.nav {
 		height: 82px;
 		padding: 0px 10px;
@@ -80,8 +92,14 @@
 		.input {
 			margin-bottom: 10px;
 		}
+		.date_time {
+			display: block;
+		}
 		label {
 			margin-right: 12px;
+		}
+		.opt-loc {
+			display: none;
 		}
 		.init_upload {
 			padding: 10px;

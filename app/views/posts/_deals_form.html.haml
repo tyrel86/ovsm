@@ -1,0 +1,15 @@
+= simple_form_for @post do |f|
+	= f.input :promo_description, label: "Whats the deal?"
+	= f.input :promo_price, label: "Original Price"
+	= f.input :promo_discounted_price, label: "Deal Price"
+	= f.input :promo_image, label: "You can atatch an image here!"
+
+	%p Location of deal
+	%p Where is your deal
+	= f.input :location_type, as: :radio_buttons, collection: [["No Location","none"], ["Same as our business","same"], ["Custom","cust"]], label: false
+	= f.input :promo_street_address, label: "Street", input_html: {class: "opt-loc"}, label_html: {class: "opt-loc"}
+	= f.input :promo_city, label: "City", input_html: {class: "opt-loc"}, label_html: {class: "opt-loc"}
+	= f.input :promo_state, label: "State", input_html: {class: "opt-loc"}, label_html: {class: "opt-loc"}
+	= f.input :promo_zip, label: "Zipcode", input_html: {class: "opt-loc"}, label_html: {class: "opt-loc"}
+
+	= f.input :promo_type, as: :hidden, input_html: { value: "deal" }

@@ -36,6 +36,8 @@
 		background-color: $alt_light_grey;
 		position: relative;
 		padding-top: 20px;
+		text-align: center;
+		margin-bottom: 55px;
 		.banner {
 			@include background-image(linear-gradient(color-stops($alt_light_blue, $alt_dark_blue)));
 			width: 390px;
@@ -47,13 +49,13 @@
 				color: white;
 				display: inline;
 				position: relative;
-				left: -75px;
+				left: -45px;
 			}
 			.star-container {
 				width: 300px;
 				display: inline;
 				position: relative;
-				left: 345px;
+				left: 300px;
 				top: 10px;
 				.star-five.on {
 					@include star-five( 10, white );
@@ -97,5 +99,12 @@
 				font-size: 24px;
 			}
 		}
+		.business_sign_up.btn {
+			margin-top: 10px;
+			font-size: 24px;
+		}
+	}
+	.business_sign_up_form {
+		display: none;
 	}
 }

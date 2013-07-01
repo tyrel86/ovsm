@@ -62,7 +62,10 @@ jQuery ->
 				url: "/suitcases/post_ids_for_current_user"
 				context: @
 				success: (data) ->
-					@update_suitcase(id) for id in data["post_ids"]
+					unless data["post_ids"] == "N/A"
+						@update_suitcase(id) for id in data["post_ids"]
+					if data["post_ids"] == "N/A"
+						$(".add_to_luggage").hide()
 			)
 
 		suitcase_click_listeners: ->
@@ -122,26 +125,33 @@ jQuery ->
 		post_view_model: (post) ->
 			@discover_content_types = (post) ->
 				content_types = {}
-				content_types.has_text = ((post.content != "") ? true : false)
-				content_types.has_photos = ((post.photo_album.square_photos[0] != undefined) ? true : false)
-				content_types.has_audio = ((post.audio_album.audio_files[0] != undefined) ? true : false)
-				content_types.has_links = ((post.page_links[0] != undefined) ? true : false)
-				content_types.has_video = ((post.video_album.video_files[0] != undefined) ? true : false)
-				@content_types = content_types
-			@discover_thumb_style = (ct) ->
-				if @uri_params.content_type == null
-					return "video" if ct.has_video
-					return "audio" if ct.has_audio
-					return "photo" if ct.has_photos
-					return "links" if ct.has_links
-					return "text" if ct.has_text
+				unless post.promotional
+					content_types.is_user = true
+					content_types.has_text = ((post.content != "") ? true : false)
+					content_types.has_photos = ((post.photo_album.square_photos[0] != undefined) ? true : false)
+					content_types.has_audio = ((post.audio_album.audio_files[0] != undefined) ? true : false)
+					content_types.has_links = ((post.page_links[0] != undefined) ? true : false)
+					content_types.has_video = ((post.video_album.video_files[0] != undefined) ? true : false)
 				else
-					type = @uri_params.content_type
-					return "video" if type == "video"
-					return "audio" if type == "audio"
-					return "photo" if type == "photos"
-					return "links" if type == "links"
-					return "text" if type == "text"
+					content_types.is_business = true
+				@content_types = content_types
+			@discover_thumb_style = (ct, post) ->
+				unless ct.is_business
+					if @uri_params.content_type == null
+						return "video" if ct.has_video
+						return "audio" if ct.has_audio
+						return "photo" if ct.has_photos
+						return "links" if ct.has_links
+						return "text" if ct.has_text
+					else
+						type = @uri_params.content_type
+						return "video" if type == "video"
+						return "audio" if type == "audio"
+						return "photo" if type == "photos"
+						return "links" if type == "links"
+						return "text" if type == "text"
+				else
+					return post.promo_type
 			@discover_file_type = (file) ->
 				parts = file.file.url.split(".")
 				ext = parts[ parts.length - 1 ]
@@ -162,18 +172,40 @@ jQuery ->
 					audio_files.push audio_file
 				audio_files
 			{
+				promo_type: post.promo_type
 				content: post.content,
 				exerpt: post.exerpt,
 				content_types: @discover_content_types(post),
 				has_content_type: (key) ->
 					@content_types[key]
-				thumb_style: @discover_thumb_style(@content_types)
+				thumb_style: @discover_thumb_style(@content_types, post)
 				videos: @videos(post)
 				photos: @photos(post)
 				audio: @audio(post)
 				links: post.page_links
 				id: post.id
 				user: post.user
+				business: post.business
+				promotional: post.promotional
+				promo_price: post.promo_price
+				promo_discounted_price: post.promo_discounted_price
+				promo_description: post.promo_description
+				promo_street_address: post. promo_street_address
+				promo_city: post.promo_city
+				promo_state: post.promo_state
+				promo_zip: post.promo_zip
+				promo_start_date: post.promo_start_date
+				promo_end_date: post.promo_end_date
+				promo_labor_characteristic: post.promo_labor_characteristic
+				promo_free: post.promo_free
+				promo_wage: post.promo_wage
+				promo_wage_time: post.promo_wage_time
+				promo_shipping_cost: post.promo_shipping_cost
+				promo_href: post.promo_href
+				promo_image: post.promo_image
+				promo_name: post.promo_name
+				location_type: post.location_type
+				promo_contact_email: post.promo_contact_email
 			}
 
 		new_post_view_model_array_from_json: ->
@@ -238,4 +270,19 @@ jQuery ->
 				$(this).find('img').attr('src', "/assets/luggage_not_added.png")
 				OvsmLib.feed.uri_params.luggage = null
 			OvsmLib.feed.get_json_data()
+		)
+
+		$(".tl_select").click( ->
+			$(".tl_select.active").removeClass("active")
+			$(this).addClass("active")
+			if $(this).hasClass("businesses")
+				OvsmLib.feed.uri_params.promotional = true
+				$(".categories.people").hide()
+				$(".categories.businesses").show()
+				$(".link.post_type[data-type='all']").last().click()
+			else
+				OvsmLib.feed.uri_params.promotional = false
+				$(".categories.people").show()
+				$(".categories.businesses").hide()
+				$(".link.post_type[data-type='all']").first().click()
 		)

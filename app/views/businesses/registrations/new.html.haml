@@ -1,34 +1,73 @@
 .jumbotron
 	%h1 Target Your Audience
 	%p.lead Weather your just getting started, looking for more customers or just want to expand your brand we can help.
-	= link_to "Get Started Today", "#", class: "btn btn-large btn-success"
 
-	%hr
+%hr
 
-	.row-fluid
-		.span4.subscription
-			.banner
-				%h2= "Basic #{draw_on_off_stars( 1 )}".html_safe
-			.banner_right
-			.banner_left
-			%p.description The ideal package to get started on the web.
-			.price
-				%h2 Free
-		.span4.subscription
-			.banner
-				%h2= "Premium #{draw_on_off_stars( 2 )}".html_safe
-			.banner_right
-			.banner_left
-			%p.description To get even more sections to showcase your products and services.
-			.price
-				%h2 $29
-				.duration /Month
-		.span4.subscription
-			.banner
-				%h2= "Corporate #{draw_on_off_stars( 3 )}".html_safe
-			.banner_right
-			.banner_left
-			%p.description Our most complete package offers the most flexibility.
-			.price
-				%h2 $59
-				.duration /Month
+.row-fluid
+	.span4.subscription
+		.banner
+			%h2 Basic
+			= draw_on_off_stars( 1 ).html_safe
+		.banner_right
+		.banner_left
+		%p.description The ideal package to get started on the web.
+		.price
+			%h2 Free
+		%p= link_to "Sign Up", "#", class: [:btn, :business_sign_up], id: "business_sign_up_basic"
+	.span4.subscription
+		.banner
+			%h2 Premium
+			= draw_on_off_stars( 2 ).html_safe
+		.banner_right
+		.banner_left
+		%p.description To get even more sections to showcase your products and services.
+		.price
+			%h2 $29
+			.duration /Month
+		%p= link_to "Sign Up", "#", class: [:btn, :business_sign_up], id: "business_sign_up_premium"
+	.span4.subscription
+		.banner
+			%h2 Corporate
+			= draw_on_off_stars( 3 ).html_safe
+		.banner_right
+		.banner_left
+		%p.description Our most complete package offers the most flexibility.
+		.price
+			%h2 $59
+			.duration /Month
+		%p= link_to "Sign Up", "#", class: [:btn, :business_sign_up], id: "business_sign_up_corporate"
+
+%hr
+
+.row-fluid
+	#business_sign_up_basic_form.business_sign_up_form
+		%h2 Basic Plan Sign up
+		= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+			= f.error_notification
+			.form-inputs
+				= f.input :business_name, :required => true, :autofocus => true
+				= f.input :email, :required => true
+				= f.input :password, :required => true
+				= f.input :password_confirmation, :required => true
+				= f.input :street_address
+				= f.input :city
+				= f.input :state
+				= f.association :feed, :label => "Select your city"
+				= f.input :zip_code
+				= f.input :phone
+				= f.input :business_banner, :required => false
+				= f.input :business_logo, :required => false
+			.form-actions
+				= f.button :submit, "Sign up"
+		%hr
+	#business_sign_up_premium_form.business_sign_up_form
+		%p In development
+		%hr
+	#business_sign_up_corporate_form.business_sign_up_form
+		%p In development
+		%hr
+
+
+.footer
+	%p OverSeaMe © Company 2013

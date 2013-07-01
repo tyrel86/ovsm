@@ -10,7 +10,11 @@ class ApplicationController < ActionController::Base
 	end
 
 	def after_sign_in_path_for(resource)
-		feeds_path
+		if resource.is_a? User
+			feeds_path
+		elsif resource.is_a? Business
+			feed_path resource.feed
+		end
 	end
 	
 	def layout_by_resource
@@ -23,6 +27,10 @@ class ApplicationController < ActionController::Base
 		else
 			"application"
 		end
+	end
+
+	def require_login
+		redirect_to root_path unless user_signed_in? or business_signed_in?
 	end
 
 end

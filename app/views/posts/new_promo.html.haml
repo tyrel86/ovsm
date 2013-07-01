@@ -1,0 +1,30 @@
+.tabular_form.promo
+	.nav
+		#deals.link.active
+			.label Deals
+			.image= image_tag "icon-text.png"
+		#partners.link
+			.label Partners
+			.image= image_tag "icon-photo.png"
+		#jobs.link
+			.label Jobs
+			.image= image_tag "icon-audio.png"
+		#events.link
+			.label Events
+			.image= image_tag "icon-movie.png"
+		#products.link
+			.label Products
+			.image= image_tag "icon-movie.png"
+	#deals_tab.tab.active
+		= render "deals_form"
+	#partners_tab.tab
+		= render "partners_form"
+	#jobs_tab.tab
+		= render "jobs_form"
+	#events_tab.tab
+		= render "events_form"
+	#products_tab.tab
+		= render "products_form"
+	.submit_post
+		.text Submit Post
+	.processing Server Is Processing Uploads

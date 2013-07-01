@@ -9,6 +9,7 @@ module ForecastFetcher
 		lat = parrent_feed.lat
 		lng = parrent_feed.lng
 		uri = "https://api.forecast.io/forecast/#{ForecastFetcher.api_key}/#{lat},#{lng}"
+		puts uri
 		begin
 			json_data = JSON.parse( open(uri).read )
 		rescue

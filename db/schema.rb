@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130624223949) do
+ActiveRecord::Schema.define(:version => 20130627211329) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(:version => 20130624223949) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "business_name"
+    t.string   "business_banner"
+    t.string   "business_logo"
+    t.integer  "feed_id"
+    t.string   "phone"
+    t.string   "street_address"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "city"
   end
 
   add_index "businesses", ["email"], :name => "index_businesses_on_email", :unique => true
@@ -200,8 +209,8 @@ ActiveRecord::Schema.define(:version => 20130624223949) do
 
   create_table "posts", :force => true do |t|
     t.text     "content"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.integer  "feed_id"
     t.integer  "user_id"
     t.integer  "post_category_id"
@@ -212,6 +221,26 @@ ActiveRecord::Schema.define(:version => 20130624223949) do
     t.boolean  "has_links"
     t.hstore   "panda_meta"
     t.boolean  "ready"
+    t.float    "promo_price"
+    t.float    "promo_discounted_price"
+    t.text     "promo_description"
+    t.string   "promo_street_address"
+    t.string   "promo_city"
+    t.string   "promo_state"
+    t.string   "promo_zip"
+    t.string   "promo_labor_characteristic"
+    t.boolean  "promo_free"
+    t.float    "promo_wage"
+    t.string   "promo_wage_time"
+    t.float    "promo_shipping_cost"
+    t.string   "promo_href"
+    t.string   "promo_image"
+    t.string   "promo_name"
+    t.integer  "business_id"
+    t.date     "promo_start_date"
+    t.date     "promo_end_date"
+    t.string   "promo_contact_email"
+    t.string   "promo_type"
   end
 
   create_table "square_photos", :force => true do |t|

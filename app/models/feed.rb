@@ -12,6 +12,7 @@ class Feed < ActiveRecord::Base
 	has_many :feed_banners
 	has_many :feed_videos
 	has_many :users
+	has_many :businesses
 	before_save :update_slug
 	before_create :initilize_dependancies, :update_time_zone
 	has_one :forecast

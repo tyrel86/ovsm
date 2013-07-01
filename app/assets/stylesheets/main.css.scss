@@ -62,9 +62,8 @@ body {
 				left: 165px!important;
 			}
 			#user_remember_me {
-				width: 135px;
 				top: 2px;
-				left: 42px!important;
+				left: 100px!important;
 			}
 			label.boolean.optional {
 				position: absolute;
@@ -91,7 +90,7 @@ body {
 	}
 	.bullpen {
 		position: absolute;
-		top: 27%;
+		top: 200px;
 		left: 3%;
 		width: 45%;
 		font-size: 70px;
@@ -105,17 +104,17 @@ body {
 		width: 255px;
 		height: 46px;
 		position: absolute;
-		top: 42%;
+		top: 330px;
 		left: 61.1%;
 		background-image: url('/assets/facebook.png');
 	}
 	.sign_up {
 		position: absolute;
-		top: 27%;
+		top: 85px;
 		left: 58%;
 		.sign_up_button {
 			position: absolute;
-			top: -27px;
+			top: 85px;
 			left: 0px;
 			width: 350px;
 			&:hover {
@@ -128,7 +127,7 @@ body {
 			height: 400px;
 			background-color: #D7D7D7;
 			position: absolute;
-			top: 48px;
+			top: 160px;
 			display: none;
 			td {
 				padding: 0px 10px 0px 5px

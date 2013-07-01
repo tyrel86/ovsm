@@ -15,12 +15,23 @@ jQuery ->
 				$(this).addClass("active")
 			)
 
+			$("input[name='post[location_type]']").change( ->
+				if $(this).val() == "cust"
+					$(".opt-loc").show()
+				else
+					$(".opt-loc").hide()
+			)
+			
+
 			#Form submition handle
 			$(".submit_post").click( ->
-				if OvsmLib.allow_form_submition
-					$("#new_post").submit()
-				else
-					alert("Some file uploads are still being prosessed by the server")
+				if $(".promo").size() == 0
+					if OvsmLib.allow_form_submition
+						$("#new_post").submit()
+					else
+						alert("Some file uploads are still being prosessed by the server")
+				if $(".promo").size() == 1
+					suffix = $(".tab.active").find("form").submit()
 			)
 
 			#Handle Upload Que Changes

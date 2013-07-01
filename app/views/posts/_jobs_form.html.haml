@@ -1,0 +1,15 @@
+= simple_form_for @post do |f|
+	= f.input :promo_description, label: "Describe the job and qualifications?"
+	= f.input :promo_labor_characteristic, collection: ["Part Time", "Full Time", "Contract"], label: "What type of job is is?"
+	= f.input :promo_wage, label: "What is the pay?"
+	= f.input :promo_wage_time, label: "what is the pay rate?", collection: ["Anually", "Hourly"]
+	= f.input :promo_image, label: "You can atatch an image here!"
+
+	%p Where will the jobs main location be?
+	= f.input :location_type, as: :radio_buttons, collection: [["No Location","none"], ["Same as our business","same"], ["Custom","cust"]], label: false
+	= f.input :promo_street_address, label: "Street", input_html: {class: "opt-loc"}, label_html: {class: "opt-loc"}
+	= f.input :promo_city, label: "City", input_html: {class: "opt-loc"}, label_html: {class: "opt-loc"}
+	= f.input :promo_state, label: "State", input_html: {class: "opt-loc"}, label_html: {class: "opt-loc"}
+	= f.input :promo_zip, label: "Zipcode", input_html: {class: "opt-loc"}, label_html: {class: "opt-loc"}
+
+	= f.input :promo_type, as: :hidden, input_html: { value: "job" }
