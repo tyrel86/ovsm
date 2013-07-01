@@ -71,5 +71,5 @@ gem 'active_model_serializers'
 gem "jquery-fileupload-rails", git: "https://github.com/cannapages/jquery-fileupload-rails.git"
 
 #Deployment
-gem 'unicorn'
+gem 'thin'
 gem 'capistrano'
