@@ -63,7 +63,7 @@ gem 'html_truncator'
 
 
 #Cient scripting libraries
-gem 'jquery-rails'
+gem 'jquery-rails', "2.3.0"
 gem 'jquery-ui-rails'
 gem 'jquery-modal-rails'
 gem 'jbuilder'
