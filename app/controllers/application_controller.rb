@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
 			feeds_path
 		elsif resource.is_a? Business
 			feed_path resource.feed
+		else
+			admin_dashboard_path(resource)
 		end
 	end
 	
