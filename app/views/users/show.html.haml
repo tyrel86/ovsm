@@ -1,6 +1,6 @@
 %user_feed{ data: {user_id: @user.id}}
 .profile
-	.avatar= image_tag @user.avatar.url if @user.avatar
+	.avatar= image_tag @user.avatar.url 
 	.weather_widget
 		- today = @forecast.today
 		.name= "#{@user.name}"
