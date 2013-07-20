@@ -40,6 +40,7 @@
 		.tl_select.people.active People
 		.tl_select.businesses Businesses
 	.categories.people
+		.devider
 		.link.active.post_type{ data: {type: "all"} }
 			.label All
 			.image= image_tag "icon-all.png"
@@ -60,6 +61,7 @@
 			.image= image_tag "icon-movie.png"
 		= select_tag( :post_categories_select, options_for_select( ['All Categories'] + ovsm_optionify( @post_categories ) ) )
 	.categories.businesses( style="display:none" )
+		.devider
 		.link.active.post_type{ data: {type: "all"} }
 			.label All
 			.image= image_tag "icon-all.png"

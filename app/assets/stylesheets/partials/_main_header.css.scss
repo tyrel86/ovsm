@@ -1,12 +1,81 @@
 $header_height: 100px;
 .header {
+	border-top: 3px solid black;
+	.new_nav {
+		.logo {
+			position: relative;
+			top: 14px;
+			img {
+				width: 230px;
+			}
+			margin: auto;
+			padding: 0;
+		}
+		.link {
+			position: absolute;
+			top: 27px;
+			&.zones {
+				left: 635px;
+			}
+			&.profile {
+				left: 227px;
+			}
+			&.new_post {
+				color: black;
+				font-size: 32px;
+				float: left;
+				text-decoration: none;
+				border-left: 1px solid black;
+				border-bottom: 1px solid black;
+				height: 30px;
+				width: 100px;
+				position: absolute;
+				right: 0px;
+				top: 3px;
+				img {
+					float: left;
+					position: relative;
+					top: 1px;
+					left: 3px;
+				}
+				p {
+					float: left;
+					font-size: 12px;
+					position: relative;
+					top: 3px;
+					left: 8px;
+				}
+			}
+			a {
+				color: black;
+				font-size: 32px;
+				float: left;
+				text-decoration: none;
+				img.home {
+					top: 0px;
+					left: 0px;
+				}
+				img.new_post {
+					top: 0px;
+					left: 0px;
+				}
+				&.active {
+					color: rgb(242,126,43);
+				}
+			}
+		}
+	}
+
+
+
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	width: 100%;
 	height: $header_height;
 	background-color: $light_blue;
-	@include background-image(linear-gradient(color-stops($dark_blue, $light_blue)));
+	// @include background-image(linear-gradient(color-stops($dark_blue, $light_blue)));
+	background-color: white;
 	z-index: 1;
 	border-bottom: 1px solid rgba(255,255,255,0.3);
 	.header_container {
@@ -15,14 +84,6 @@ $header_height: 100px;
 		height: $header_height;
 		margin: auto;
 		overflow: visible;
-		.logo {
-			position: absolute;
-			top: 10px;
-			left: 0px;
-			width: 387px;
-			height: 85px;
-			background-image: url('/assets/logo.png');
-		}
 		.nav {
 			position: absolute;
 			top: 20px;

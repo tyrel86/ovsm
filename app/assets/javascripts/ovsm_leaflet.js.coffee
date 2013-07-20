@@ -7,7 +7,7 @@ jQuery ->
 
 		cloud_made =
 			api_key: 'b62a32b6ef034942be4b49e66bfe145f'
-			style_id: '92877'
+			style_id: '102890'
 			tile_size: '256'
 			minZoom: 3
 			maxZoom: 4
@@ -21,7 +21,7 @@ jQuery ->
 			opacity: 0.3
 			noWrap: true
 			reuseTiles: true
-		L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png', open_weather).addTo(map)
+		# L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png', open_weather).addTo(map)
 
 		default_icon = L.icon(
 			iconUrl: '/assets/feed_marker.png'

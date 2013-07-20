@@ -11,7 +11,8 @@
 
 body {
 	// @include background-image(linear-gradient(left, color-stops($dark_grey, $mid_grey 20%, $light_grey 50%, $mid_grey 80%, $dark_grey 100%)));
-	@include background-image(linear-gradient(left, color-stops($dark_grey, $light_grey 50%, $dark_grey 100%)));
+	// @include background-image(linear-gradient(left, color-stops($dark_grey, $light_grey 50%, $dark_grey 100%)));
+	background-color: white;
 	font-family: 'abeatbyKai';
 }
 
@@ -396,10 +397,19 @@ body {
 				font-size: 21px;
 				width: 49.7%;
 				height: $top_level_height;
-				@include background-image(linear-gradient(color-stops($light_green, $dark_green)));
-				color: white;
+				// @include background-image(linear-gradient(color-stops($light_green, $dark_green)));
+				background-color: white;
+				color: rgb(99,96,96);
 				&.active {
-					@include background-image(linear-gradient(color-stops($alt_light_blue, $alt_dark_blue)));
+					// @include background-image(linear-gradient(color-stops($alt_light_blue, $alt_dark_blue)));
+					background-color: rgb(206,204,204);
+					color: white;
+				}
+				&:hover {
+					background-color: rgb(99,96,96);
+					color: white;
+					cursor: hand;
+					cursor: pointer;
 				}
 			}
 			.people {
@@ -412,15 +422,31 @@ body {
 		.categories {
 			position: relative;
 			width: 100%;
-			height: 90px;
-			margin-top: $nav_top_margin;
-			margin-bottom: 10px;
-			@include background-image(linear-gradient(color-stops($light_orange, $dark_orange)));
+			height: 85px;
+			margin-bottom: 15px;
+			margin-top: 10px;
+			background-color: white;
+			.devider {
+				position: absolute;
+				bottom: -1px;
+				left: 0px;
+				width: 605px;
+				border-bottom: 2px solid rgb(99,96,96);
+			}
+			.businesses {
+				.link {
+					right: -205px;
+				}
+			}
+			.people {
+				.link {
+					right: -25px;
+				}
+			}
 			.link {
 				float: left;
 				position: relative;
-				top: 15px;
-				right: -25px;
+				top: 7px;
 				height: 75px;
 				width: 75px;
 				text-align: center;
@@ -429,6 +455,10 @@ body {
 					background-color: white;
 					@include border-top-left-radius( 7px );
 					@include border-top-right-radius( 7px );
+					border-top: 2px solid rgb(99,96,96);
+					border-left: 2px solid rgb(99,96,96);
+					border-right: 2px solid rgb(99,96,96);
+					@include single-box-shadow;
 				}
 				$category_link_top_push: 15px;
 				.label {
